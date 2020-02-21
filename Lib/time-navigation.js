@@ -8,12 +8,12 @@ async function showHumanWeAreLoadingCharts(whatTheyClicked) {
     }
 }
 
-$(".zoomout").click(async function () { view.zoomout(); showHumanWeAreLoadingCharts($(this)); });
-$(".zoomin").click(async function () { view.zoomin(); showHumanWeAreLoadingCharts($(this)); });
-$(".panright").click(async function () { view.panright(); showHumanWeAreLoadingCharts($(this)); });
-$(".panleft").click(async function () { view.panleft(); showHumanWeAreLoadingCharts($(this)); });
+$(".zoomout").click(function () { view.zoomout(); showHumanWeAreLoadingCharts($(this)); });
+$(".zoomin").click(function () { view.zoomin(); showHumanWeAreLoadingCharts($(this)); });
+$(".panright").click(function () { view.panright(); showHumanWeAreLoadingCharts($(this)); });
+$(".panleft").click(function () { view.panleft(); showHumanWeAreLoadingCharts($(this)); });
 
-$(".duration").click(async function () {
+$(".duration").click(function () {
 
     const requestedTime = $(this).attr("duration");
 
@@ -31,7 +31,7 @@ $(".duration").click(async function () {
 
 });
 
-$(".chart").bind("plotselected", async function (_event, ranges) {
+$(".chart").bind("plotselected", function (_event, ranges) {
     view.start = ranges.xaxis.from;
     view.end = ranges.xaxis.to;
 
