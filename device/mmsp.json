@@ -1,0 +1,680 @@
+{
+    "name": "MMSP ASHP",
+    "category": "MyForest",
+    "group": "Heat Pumps",
+    "description": "A heat pump with considerable details available as a result of having a Metering and Monitoring Service Package (MMSP) installed. Creates feeds to auto-configure the \"MMSP Heat Pump\" app (and also the default 'My Heatpump' app).",
+    "inputs": [
+        {
+            "name": "OperationMode",
+            "description": "OperationMode",
+            "processList": [
+                {
+                    "process": "log_to_feed",
+                    "arguments": {
+                        "type": "ProcessArg::FEEDID",
+                        "value": "OperationMode"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "EcoHotWater",
+            "description": "EcoHotWater",
+            "processList": [
+                {
+                    "process": "log_to_feed",
+                    "arguments": {
+                        "type": "ProcessArg::FEEDID",
+                        "value": "EcoHotWater"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "WaterPump1Status",
+            "description": "WaterPump1Status",
+            "processList": [
+                {
+                    "process": "log_to_feed",
+                    "arguments": {
+                        "type": "ProcessArg::FEEDID",
+                        "value": "WaterPump1Status"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "WaterPump2Status",
+            "description": "WaterPump2Status",
+            "processList": [
+                {
+                    "process": "log_to_feed",
+                    "arguments": {
+                        "type": "ProcessArg::FEEDID",
+                        "value": "WaterPump2Status"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "WaterPump3Status",
+            "description": "WaterPump3Status",
+            "processList": [
+                {
+                    "process": "log_to_feed",
+                    "arguments": {
+                        "type": "ProcessArg::FEEDID",
+                        "value": "WaterPump3Status"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "WaterPump4Status",
+            "description": "WaterPump4Status",
+            "processList": [
+                {
+                    "process": "log_to_feed",
+                    "arguments": {
+                        "type": "ProcessArg::FEEDID",
+                        "value": "WaterPump4Status"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "HeatPumpFrequency",
+            "description": "The amount of power the ASHP intends to use in the next minute",
+            "processList": [
+                {
+                    "process": "scale",
+                    "arguments": {
+                        "type": "ProcessArg::VALUE",
+                        "value": 60
+                    }
+                },
+                {
+                    "process": "log_to_feed",
+                    "arguments": {
+                        "type": "ProcessArg::FEEDID",
+                        "value": "HeatPumpFrequency"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "FlowTemperature",
+            "description": "Water temperature coming from ASHP to consumer",
+            "processList": [
+                {
+                    "process": "log_to_feed",
+                    "arguments": {
+                        "type": "ProcessArg::FEEDID",
+                        "value": "FlowTemperature"
+                    }
+                },
+                {
+                    "process": "log_to_feed",
+                    "arguments": {
+                        "type": "ProcessArg::FEEDID",
+                        "value": "heatpump_flowT"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "ReturnTemperature",
+            "description": "Water temperature coming from consumer to ASHP",
+            "processList": [
+                {
+                    "process": "log_to_feed",
+                    "arguments": {
+                        "type": "ProcessArg::FEEDID",
+                        "value": "ReturnTemperature"
+                    }
+                },
+                {
+                    "process": "log_to_feed",
+                    "arguments": {
+                        "type": "ProcessArg::FEEDID",
+                        "value": "heatpump_returnT"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "TargetHCTemperatureZone1",
+            "description": "Target water temperature coming from ASHP to consumer",
+            "processList": [
+                {
+                    "process": "log_to_feed",
+                    "arguments": {
+                        "type": "ProcessArg::FEEDID",
+                        "value": "TargetHCTemperatureZone1"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "OutdoorTemperature",
+            "description": "Temperature at the ASHP",
+            "processList": [
+                {
+                    "process": "log_to_feed",
+                    "arguments": {
+                        "type": "ProcessArg::FEEDID",
+                        "value": "OutdoorTemperature"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "RoomTemperatureZone1",
+            "description": "Room Temperature in Zone1",
+            "processList": [
+                {
+                    "process": "log_to_feed",
+                    "arguments": {
+                        "type": "ProcessArg::FEEDID",
+                        "value": "RoomTemperatureZone1"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "SetTankWaterTemperature",
+            "description": "Desired temperature of the hot water cylinder",
+            "processList": [
+                {
+                    "process": "log_to_feed",
+                    "arguments": {
+                        "type": "ProcessArg::FEEDID",
+                        "value": "SetTankWaterTemperature"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "TankWaterTemperature",
+            "description": "Actual temperature of the hot water cylinder",
+            "processList": [
+                {
+                    "process": "log_to_feed",
+                    "arguments": {
+                        "type": "ProcessArg::FEEDID",
+                        "value": "TankWaterTemperature"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "HeatingEnergyConsumedRate1",
+            "description": "Energy used for space heating",
+            "processList": [
+                {
+                    "process": "scale",
+                    "arguments": {
+                        "type": "ProcessArg::VALUE",
+                        "value": 60
+                    }
+                },
+                {
+                    "process": "log_to_feed",
+                    "arguments": {
+                        "type": "ProcessArg::FEEDID",
+                        "value": "HeatingEnergyConsumedRate1"
+                    }
+                },
+                {
+                    "process": "power_to_kwh",
+                    "arguments": {
+                        "type": "ProcessArg::FEEDID",
+                        "value": "HeatingEnergyConsumed1"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "HeatingEnergyProducedRate1",
+            "description": "Energy sent for space heating",
+            "processList": [
+                {
+                    "process": "scale",
+                    "arguments": {
+                        "type": "ProcessArg::VALUE",
+                        "value": 60
+                    }
+                },
+                {
+                    "process": "log_to_feed",
+                    "arguments": {
+                        "type": "ProcessArg::FEEDID",
+                        "value": "HeatingEnergyProducedRate1"
+                    }
+                },
+                {
+                    "process": "power_to_kwh",
+                    "arguments": {
+                        "type": "ProcessArg::FEEDID",
+                        "value": "HeatingEnergyProduced1"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "HotWaterEnergyConsumedRate1",
+            "description": "Energy used to heat up hot water",
+            "processList": [
+                {
+                    "process": "scale",
+                    "arguments": {
+                        "type": "ProcessArg::VALUE",
+                        "value": 60
+                    }
+                },
+                {
+                    "process": "log_to_feed",
+                    "arguments": {
+                        "type": "ProcessArg::FEEDID",
+                        "value": "HotWaterEnergyConsumedRate1"
+                    }
+                },
+                {
+                    "process": "power_to_kwh",
+                    "arguments": {
+                        "type": "ProcessArg::FEEDID",
+                        "value": "HotWaterEnergyConsumed1"
+                    }
+                },
+                {
+                    "process": "reset2original",
+                    "arguments": {
+                        "type": "ProcessArg::NONE"
+                    }
+                },
+                {
+                    "process": "add_input",
+                    "arguments": {
+                        "type": "ProcessArg::INPUTID",
+                        "value": "HeatingEnergyConsumedRate1"
+                    }
+                },
+                {
+                    "process": "scale",
+                    "arguments": {
+                        "type": "ProcessArg::VALUE",
+                        "value": 60
+                    }
+                },
+                {
+                    "process": "log_to_feed",
+                    "arguments": {
+                        "type": "ProcessArg::FEEDID",
+                        "value": "TotalEnergyConsumedRate1"
+                    }
+                },
+                {
+                    "process": "log_to_feed",
+                    "arguments": {
+                        "type": "ProcessArg::FEEDID",
+                        "value": "heatpump_elec"
+                    }
+                },
+                {
+                    "process": "power_to_kwh",
+                    "arguments": {
+                        "type": "ProcessArg::FEEDID",
+                        "value": "TotalEnergyConsumed1"
+                    }
+                },
+                {
+                    "process": "power_to_kwh",
+                    "arguments": {
+                        "type": "ProcessArg::FEEDID",
+                        "value": "heatpump_elec_kwh"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "HotWaterEnergyProducedRate1",
+            "description": "Energy sent to heat up hot water",
+            "processList": [
+                {
+                    "process": "scale",
+                    "arguments": {
+                        "type": "ProcessArg::VALUE",
+                        "value": 60
+                    }
+                },
+                {
+                    "process": "log_to_feed",
+                    "arguments": {
+                        "type": "ProcessArg::FEEDID",
+                        "value": "HotWaterEnergyProducedRate1"
+                    }
+                },
+                {
+                    "process": "power_to_kwh",
+                    "arguments": {
+                        "type": "ProcessArg::FEEDID",
+                        "value": "HotWaterEnergyProduced1"
+                    }
+                },
+                {
+                    "process": "reset2original",
+                    "arguments": {
+                        "type": "ProcessArg::NONE"
+                    }
+                },
+                {
+                    "process": "add_input",
+                    "arguments": {
+                        "type": "ProcessArg::INPUTID",
+                        "value": "HeatingEnergyProducedRate1"
+                    }
+                },
+                {
+                    "process": "scale",
+                    "arguments": {
+                        "type": "ProcessArg::VALUE",
+                        "value": 60
+                    }
+                },
+                {
+                    "process": "log_to_feed",
+                    "arguments": {
+                        "type": "ProcessArg::FEEDID",
+                        "value": "TotalEnergyProducedRate1"
+                    }
+                },
+                {
+                    "process": "log_to_feed",
+                    "arguments": {
+                        "type": "ProcessArg::FEEDID",
+                        "value": "heatpump_heat"
+                    }
+                },
+                {
+                    "process": "power_to_kwh",
+                    "arguments": {
+                        "type": "ProcessArg::FEEDID",
+                        "value": "TotalEnergyProduced1"
+                    }
+                },
+                {
+                    "process": "power_to_kwh",
+                    "arguments": {
+                        "type": "ProcessArg::FEEDID",
+                        "value": "heatpump_heat_kwh"
+                    }
+                },
+                {
+                    "process": "reset2zero",
+                    "arguments": {
+                        "type": "ProcessArg::NONE"
+                    }
+                },
+                {
+                    "process": "add_feed",
+                    "arguments": {
+                        "type": "ProcessArg::FEEDID",
+                        "value": "TotalEnergyProducedRate1"
+                    }
+                },
+                {
+                    "process": "divide_by_feed",
+                    "arguments": {
+                        "type": "ProcessArg::FEEDID",
+                        "value": "TotalEnergyConsumedRate1"
+                    }
+                },
+                {
+                    "process": "log_to_feed",
+                    "arguments": {
+                        "type": "ProcessArg::FEEDID",
+                        "value": "CoP"
+                    }
+                }
+            ]
+        }
+    ],
+    "feeds": [
+        {
+            "name": "OperationMode",
+            "type": "DataType::REALTIME",
+            "engine": "Engine::PHPFINA",
+            "interval": "60"
+        },
+        {
+            "name": "EcoHotWater",
+            "type": "DataType::REALTIME",
+            "engine": "Engine::PHPFINA",
+            "interval": "60"
+        },
+        {
+            "name": "WaterPump1Status",
+            "type": "DataType::REALTIME",
+            "engine": "Engine::PHPFINA",
+            "interval": "60"
+        },
+        {
+            "name": "WaterPump2Status",
+            "type": "DataType::REALTIME",
+            "engine": "Engine::PHPFINA",
+            "interval": "60"
+        },
+        {
+            "name": "WaterPump3Status",
+            "type": "DataType::REALTIME",
+            "engine": "Engine::PHPFINA",
+            "interval": "60"
+        },
+        {
+            "name": "WaterPump4Status",
+            "type": "DataType::REALTIME",
+            "engine": "Engine::PHPFINA",
+            "interval": "60"
+        },
+        {
+            "name": "heatpump_elec_kwh",
+            "type": "DataType::REALTIME",
+            "engine": "Engine::PHPFINA",
+            "interval": "60",
+            "unit": "kWh"
+        },
+        {
+            "name": "heatpump_elec",
+            "type": "DataType::REALTIME",
+            "engine": "Engine::PHPFINA",
+            "interval": "60",
+            "unit": "W"
+        },
+        {
+            "name": "heatpump_heat_kwh",
+            "type": "DataType::REALTIME",
+            "engine": "Engine::PHPFINA",
+            "interval": "60",
+            "unit": "kWh"
+        },
+        {
+            "name": "heatpump_heat",
+            "type": "DataType::REALTIME",
+            "engine": "Engine::PHPFINA",
+            "interval": "60",
+            "unit": "W"
+        },
+        {
+            "name": "heatpump_flowT",
+            "type": "DataType::REALTIME",
+            "engine": "Engine::PHPFINA",
+            "interval": "60",
+            "unit": "°C"
+        },
+        {
+            "name": "heatpump_returnT",
+            "type": "DataType::REALTIME",
+            "engine": "Engine::PHPFINA",
+            "interval": "60",
+            "unit": "°C"
+        },
+        {
+            "name": "HeatPumpFrequency",
+            "type": "DataType::REALTIME",
+            "engine": "Engine::PHPFINA",
+            "interval": "60",
+            "unit": "W"
+        },
+        {
+            "name": "FlowTemperature",
+            "type": "DataType::REALTIME",
+            "engine": "Engine::PHPFINA",
+            "interval": "60",
+            "unit": "°C"
+        },
+        {
+            "name": "ReturnTemperature",
+            "type": "DataType::REALTIME",
+            "engine": "Engine::PHPFINA",
+            "interval": "60",
+            "unit": "°C"
+        },
+        {
+            "name": "TargetHCTemperatureZone1",
+            "type": "DataType::REALTIME",
+            "engine": "Engine::PHPFINA",
+            "interval": "60",
+            "unit": "°C"
+        },
+        {
+            "name": "OutdoorTemperature",
+            "type": "DataType::REALTIME",
+            "engine": "Engine::PHPFINA",
+            "interval": "60",
+            "unit": "°C"
+        },
+        {
+            "name": "RoomTemperatureZone1",
+            "type": "DataType::REALTIME",
+            "engine": "Engine::PHPFINA",
+            "interval": "60",
+            "unit": "°C"
+        },
+        {
+            "name": "SetTankWaterTemperature",
+            "type": "DataType::REALTIME",
+            "engine": "Engine::PHPFINA",
+            "interval": "60",
+            "unit": "°C"
+        },
+        {
+            "name": "TankWaterTemperature",
+            "type": "DataType::REALTIME",
+            "engine": "Engine::PHPFINA",
+            "interval": "60",
+            "unit": "°C"
+        },
+        {
+            "name": "HeatingEnergyConsumedRate1",
+            "type": "DataType::REALTIME",
+            "engine": "Engine::PHPFINA",
+            "interval": "60",
+            "unit": "W"
+        },
+        {
+            "name": "HeatingEnergyProducedRate1",
+            "type": "DataType::REALTIME",
+            "engine": "Engine::PHPFINA",
+            "interval": "60",
+            "unit": "W"
+        },
+        {
+            "name": "HotWaterEnergyConsumedRate1",
+            "type": "DataType::REALTIME",
+            "engine": "Engine::PHPFINA",
+            "interval": "60",
+            "unit": "W"
+        },
+        {
+            "name": "HotWaterEnergyProducedRate1",
+            "type": "DataType::REALTIME",
+            "engine": "Engine::PHPFINA",
+            "interval": "60",
+            "unit": "W"
+        },
+        {
+            "name": "HeatingEnergyConsumed1",
+            "type": "DataType::REALTIME",
+            "engine": "Engine::PHPFINA",
+            "interval": "60",
+            "unit": "Wh"
+        },
+        {
+            "name": "HeatingEnergyProduced1",
+            "type": "DataType::REALTIME",
+            "engine": "Engine::PHPFINA",
+            "interval": "60",
+            "unit": "Wh"
+        },
+        {
+            "name": "HotWaterEnergyConsumed1",
+            "type": "DataType::REALTIME",
+            "engine": "Engine::PHPFINA",
+            "interval": "60",
+            "unit": "Wh"
+        },
+        {
+            "name": "HotWaterEnergyProduced1",
+            "type": "DataType::REALTIME",
+            "engine": "Engine::PHPFINA",
+            "interval": "60",
+            "unit": "Wh"
+        },
+        {
+            "name": "TotalEnergyConsumedRate1",
+            "type": "DataType::REALTIME",
+            "engine": "Engine::PHPFINA",
+            "interval": "60",
+            "unit": "W"
+        },
+        {
+            "name": "TotalEnergyConsumed1",
+            "type": "DataType::REALTIME",
+            "engine": "Engine::PHPFINA",
+            "interval": "60",
+            "unit": "Wh"
+        },
+        {
+            "name": "TotalEnergyProducedRate1",
+            "type": "DataType::REALTIME",
+            "engine": "Engine::PHPFINA",
+            "interval": "60",
+            "unit": "W"
+        },
+        {
+            "name": "TotalEnergyProduced1",
+            "type": "DataType::REALTIME",
+            "engine": "Engine::PHPFINA",
+            "interval": "60",
+            "unit": "Wh"
+        },
+        {
+            "name": "CoP",
+            "type": "DataType::REALTIME",
+            "engine": "Engine::PHPFINA",
+            "interval": "60"
+        },
+        {
+            "name": "boost_hot_water",
+            "type": "DataType::REALTIME",
+            "engine": "Engine::PHPFINA",
+            "interval": "60"
+        },
+        {
+            "name": "boost_radiators",
+            "type": "DataType::REALTIME",
+            "engine": "Engine::PHPFINA",
+            "interval": "60"
+        }
+    ]
+}

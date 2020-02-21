@@ -203,7 +203,7 @@
                 <a href="https://www.ofgem.gov.uk/key-term-explained/metering-and-monitoring-service-package-mmsp">Metering and Monitoring Service Package</a> (MMSP) installed.
             </p>
             <h3>Configuring Feeds</h3>
-            <p>The list of feeds looks daunting,soon there should be a MMSP ASHP device which contains all the feeds you need.</p>
+            <p>The list of feeds looks daunting but you can use this [MMSP ASHP device file](device/mmsp.json) which contains all the feeds you need.</p>
             <p>This app can auto-configure connecting to emoncms feeds with the names shown on the right, alternatively
                 feeds can be selected by clicking on the edit button.</p>
             <p>
