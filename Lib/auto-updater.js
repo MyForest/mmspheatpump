@@ -40,12 +40,15 @@ async function updater() {
     oldestFeed = Math.min(...Object.values(feedsByConfigKey).map(f => f.start_time))
 
     if (view.end == 0) {
+        // Assign a default view window
         view.end = newestFeed * 1000;
         view.start = view.end - 3600 * 1000;
     }
 
+    // Start updating the current status, we'll await it later
     const currentStatusPromise = updateCurrentStatus();
 
+    // Update the graphs
     const timeInterval = (view.end - view.start) / 1000;
     if (timeInterval > 7200) {
         $(".review-mode").html("Review - not updating")
