@@ -33,10 +33,11 @@ async function loadDataAndRenderCharts() {
     chartSeriesByConfigKey = {};
     const feedHistoryByConfigKey = {}
 
-    // Fetch all the latest data
+    // Fetch the feed history
 
     await Promise.all(Object.keys(config.app).map(async configKey => {
         if (feedsByConfigKey[configKey]) {
+            // This feed has been configured locally
 
             const feedHistory = feed.getdata(feedsByConfigKey[configKey].id, start, end, interval, 1, 1);
             feedHistoryByConfigKey[configKey] = feedHistory;
