@@ -1,12 +1,15 @@
+/**Use the first and last readings to work out how much power we've used */
 function kiloWattHoursUsed(kilowattHoursFeed) {
     return kilowattHoursFeed[kilowattHoursFeed.length - 1][1] - kilowattHoursFeed[0][1]
 }
 
+/**Describe the efficiency, cost and power consumption of these two feeds */
 function energySummary(inputFeed, outputFeed, interval, hideEfficiency, hideConsumption) {
 
-    consumed = kiloWattHoursUsed(inputFeed)
-    produced = kiloWattHoursUsed(outputFeed)
+    const consumed = kiloWattHoursUsed(inputFeed)
+    const produced = kiloWattHoursUsed(outputFeed)
 
+    // Check we can perform the relevant maths
     if (consumed == 0) return ""
 
     content = ""
@@ -38,7 +41,10 @@ function energySummary(inputFeed, outputFeed, interval, hideEfficiency, hideCons
         content += " => "
         content += produced.toFixed(1)
 
-        if (interval != 3600) {
+        if (interval == 3600) {
+            // No point showing the kW because it'll be the same as the kWh
+            // We default the UI to one hour, so optimise for this specific case to keep the UI looking trim
+        } else {
             content += ", kW: "
             content += (consumed * 3600 / interval).toPrecision(3)
             content += " => "
