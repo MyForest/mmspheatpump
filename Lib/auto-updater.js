@@ -1,83 +1,69 @@
 var lastUpdate = null;
 var newestFeed = null;
 var oldestFeed = null;
-var feedsByConfigKey = {};
-const lastUpdateByFeedId = {}
-const feedMetaDataById = new Map()
 
-/** Notably listbyidasync is bad because it sends the API key on the URL which is logged by web servers. It gets 1.6k per call */
-async function getFeedsLatest() {
+const feedsByConfigKey = {};
 
-    const now = (new Date()).getTime()
-    Object.entries(config.app).map(async ([feedName, feedConfig]) => {
-        const feedId = feedConfig.value;
-        const feedMetaData = feedMetaDataById[feedId];
+/** Uses the feeds API to stash the latest value and metadata for all feeds */
+async function updateFeedCache() {
 
-        if (feedMetaData) {
+    const response = await fetch("../feed/list.json")
+    const result = await response.json()
 
-            const lastUpdate = lastUpdateByFeedId[feedId]
+    if (result) {
 
-            const nextUpdate = lastUpdate + 2 * feedMetaData.interval;
+        Object.entries(config.app).map(([configKey, configItem]) => {
 
-            if (now > nextUpdate) {
-                console.log("Should get update for " + feedName)
-                const url = "../feed/timevalue.json?id=" + feedId;
-                const res = await fetch(url)
-                body = await res.json()
-                lastUpdate[feedId] = body.time
+            // The config.app{}.value tells us which feed.id in this instance of Emoncms represents the specific config key so let's update our cache accordingly
+            const feedFromAPIThatRepresentsThisConfigItem = result.find(feed => feed.id == configItem.value)
+
+            if (feedFromAPIThatRepresentsThisConfigItem) {
+
+                // Cache the feed information for this instance of Emoncms using the application's naming (i.e. the configKey)
+                // This allows the app code to simply refer to things by stable configKey without worrying about the local naming of the feed
+                feedsByConfigKey[configKey] = feedFromAPIThatRepresentsThisConfigItem
+
             } else {
-                console.debug(feedName + " won't be updated until " + nextUpdate)
+                // Purposefully clear it so we don't keep referring to a feed that might have vanished since we put it in the cache
+                feedsByConfigKey[configKey] == null
             }
-        }
-
-    })
-
+        })
+    }
 }
 
 async function updater() {
 
-    const result = await new Promise(resolve => feed.listbyidasync(resolve));
+    await updateFeedCache()
 
-    if (result) {
+    previousNewest = newestFeed;
+    newestFeed = Math.max(...Object.values(feedsByConfigKey).map(f => f.time))
+    oldestFeed = Math.min(...Object.values(feedsByConfigKey).map(f => f.start_time))
 
-        // Quick lookup for feeds
-        Object.entries(config.app).map(([feedName, feedConfig]) => {
-            const dataFromResult = result[feedConfig.value]
-            if (dataFromResult != null) {
-                feedsByConfigKey[feedName] = result[feedConfig.value];
-            }
-        })
-
-        previousNewest = newestFeed;
-        newestFeed = Math.max(...Object.values(feedsByConfigKey).map(f => f.time))
-        oldestFeed = Math.min(...Object.values(feedsByConfigKey).map(f => f.start_time))
-
-        if (view.end == 0) {
-            view.end = newestFeed * 1000;
-            view.start = view.end - 3600 * 1000;
-        }
-
-        const currentStatusPromise = updateCurrentStatus();
-
-        const timeInterval = (view.end - view.start) / 1000;
-        if (timeInterval > 7200) {
-            $(".review-mode").html("Review - not updating")
-        } else {
-            $(".review-mode").html("Watching with rolling window of " + timeInterval + " seconds")
-
-            if (previousNewest != newestFeed) {
-                $("#updater").addClass("processing")
-                try {
-                    await updateGraph()
-                    previousNewest = newestFeed
-                } finally {
-                    $("#updater").removeClass("processing")
-                }
-            }
-        }
-
-        await currentStatusPromise;
-        lastUpdate = new Date();
-
+    if (view.end == 0) {
+        view.end = newestFeed * 1000;
+        view.start = view.end - 3600 * 1000;
     }
+
+    const currentStatusPromise = updateCurrentStatus();
+
+    const timeInterval = (view.end - view.start) / 1000;
+    if (timeInterval > 7200) {
+        $(".review-mode").html("Review - not updating")
+    } else {
+        $(".review-mode").html("Watching with rolling window of " + timeInterval + " seconds")
+
+        if (previousNewest != newestFeed) {
+            $("#updater").addClass("processing")
+            try {
+                await updateGraph()
+                previousNewest = newestFeed
+            } finally {
+                $("#updater").removeClass("processing")
+            }
+        }
+    }
+
+    await currentStatusPromise;
+    lastUpdate = new Date();
+
 }
