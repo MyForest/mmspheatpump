@@ -6,3 +6,4 @@ It has been designed for an air source heat pump attached to a single-zone water
 
 It was inspired by "[My Heat Pump](https://github.com/emoncms/app/tree/master/apps/OpenEnergyMonitor/myheatpump)" but the application logic comes from a home-grown web app that [David Bowen](mailto:david@myforest.com) started writing in November 2019.
 
+![](images/mmspheatpump.gif)
