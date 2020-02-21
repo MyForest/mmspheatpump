@@ -4,7 +4,7 @@ async function configureApplicationOnClientSide() {
     config.app = await (await fetch(applicationURL + "config/application-configuration.json")).json()
 
     // Load the available feeds for this user's system so we can configure the application
-    config.feeds = feed.list();
+    config.feeds = await (await fetch("../feed/list.json")).json()
 
     config.initapp = function () { init() };
     config.showapp = function () { show() };

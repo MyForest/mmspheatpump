@@ -8,8 +8,6 @@
 <link href="<?php echo $path; ?>Modules/app/Views/css/light.css?v=<?php echo $v; ?>" rel="stylesheet">
 
 <script type="text/javascript" src="<?php echo $path; ?>Modules/app/Lib/config.js?v=<?php echo $v; ?>"></script>
-<script type="text/javascript" src="<?php echo $path; ?>Modules/app/Lib/feed.js?v=<?php echo $v; ?>"></script>
-
 <script type="text/javascript" src="<?php echo $path; ?>Lib/flot/jquery.flot.min.js?v=<?php echo $v; ?>"></script>
 <script type="text/javascript" src="<?php echo $path; ?>Lib/flot/jquery.flot.time.min.js?v=<?php echo $v; ?>"></script>
 <script type="text/javascript" src="<?php echo $path; ?>Lib/flot/jquery.flot.selection.min.js?v=<?php echo $v; ?>"></script>
@@ -225,8 +223,6 @@
     // We'll use this refer to things like images and configuration files
     const applicationURL = "<?php echo $appPublicRoot; ?>";
 
-    // Snaffle the API key from the server-side to allow the feeds module to access the data
-    const apikey = "<?php print $apikey; ?>";
 
     // Reduce confusion by turning off the configuration page if this user can't make updates
     if (!"<?php echo $session['write']; ?>") $(".openconfig").hide();

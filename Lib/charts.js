@@ -39,7 +39,10 @@ async function loadDataAndRenderCharts() {
         if (feedsByConfigKey[configKey]) {
             // This feed has been configured locally
 
-            const feedHistory = feed.getdata(feedsByConfigKey[configKey].id, start, end, interval, 1, 1);
+            const feedId = feedsByConfigKey[configKey].id
+            const url = "../feed/data.json?id=" + feedId + "&start=" + start + "&end=" + end + "&interval=" + interval + "&skipmissing=1&limitinterval=1"
+            const feedHistory = await (await fetch(url)).json()
+
             feedHistoryByConfigKey[configKey] = feedHistory;
 
             const chartSeriesOptionsAndData = Object.assign({}, config.app[configKey].displayOptions);
