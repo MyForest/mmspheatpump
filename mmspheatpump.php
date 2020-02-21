@@ -209,6 +209,9 @@
             <p>
                 <img id="appsetup_image" src="<?php echo $appPublicRoot; ?>images/mmspheatpump.gif">
             </p>
+            <p>
+                Licence: <a href="https://raw.githubusercontent.com/MyForest/mmspheatpump/master/LICENSE">GNU AFFERO GENERAL PUBLIC LICENSE</a>
+            </p>
         </div>
     </div>
     <div class="app-config"></div>
