@@ -131,7 +131,7 @@
 
 
                 <div class="section-heading">Energy
-                    <span hideEfficiency="1" inputFeeds="TotalEnergyConsumed1" outputFeeds="TotalEnergyProduced1"></span>
+                    <span hideEfficiency="1" data-input-config-key="TotalEnergyConsumed1" data-output-config-key="TotalEnergyProduced1"></span>
                 </div>
 
                 <div>
@@ -141,7 +141,7 @@
                 </div>
 
                 <div class="section-heading">Efficiency
-                    <span hideConsumption="1" inputFeeds="TotalEnergyConsumed1" outputFeeds="TotalEnergyProduced1"></span>
+                    <span hideConsumption="1" data-input-config-key="TotalEnergyConsumed1" data-output-config-key="TotalEnergyProduced1"></span>
                 </div>
 
                 <div>
@@ -156,7 +156,7 @@
                         <img src="<?php echo $path; ?>Modules/app/apps/MyForest/mmspheatpump/images/radiator_128.png">
                         Space Heating
                     </span>
-                    <span class="energy-summary" inputFeeds="HeatingEnergyConsumed1" outputFeeds="HeatingEnergyProduced1">
+                    <span class="energy-summary" data-input-config-key="HeatingEnergyConsumed1" data-output-config-key="HeatingEnergyProduced1">
                 </div>
 
                 <div>
@@ -171,7 +171,7 @@
                         <img src="<?php echo $appPublicRoot; ?>images/cylinder_128.png">
                         Hot Water
                     </span>
-                    <span class="energy-summary" inputFeeds="HotWaterEnergyConsumed1" outputFeeds="HotWaterEnergyProduced1">
+                    <span class="energy-summary" data-input-config-key="HotWaterEnergyConsumed1" data-output-config-key="HotWaterEnergyProduced1">
                 </div>
 
                 <div>

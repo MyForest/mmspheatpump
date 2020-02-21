@@ -2,10 +2,10 @@ function kiloWattHoursUsed(kilowattHoursFeed) {
     return kilowattHoursFeed[kilowattHoursFeed.length - 1][1] - kilowattHoursFeed[0][1]
 }
 
-function energySummary(inputFeeds, outputFeeds, interval, hideEfficiency, hideConsumption) {
+function energySummary(inputFeed, outputFeed, interval, hideEfficiency, hideConsumption) {
 
-    consumed = inputFeeds.reduce((p, data) => p + kiloWattHoursUsed(data), 0)
-    produced = outputFeeds.reduce((p, data) => p + kiloWattHoursUsed(data), 0)
+    consumed = kiloWattHoursUsed(inputFeed)
+    produced = kiloWattHoursUsed(outputFeed)
 
     if (consumed == 0) return ""
 
@@ -52,13 +52,13 @@ function energySummary(inputFeeds, outputFeeds, interval, hideEfficiency, hideCo
 
 async function updateWindowSummary(feedHistoryByConfigKey, windowTimeInterval) {
 
-    $("[inputFeeds][outputFeeds]").each(function () {
+    $("[data-input-config-key][data-output-config-key]").each(function () {
 
-        const inputConfigKeys = $(this).attr("inputFeeds").split(",").map(feedName => feedName.trim())
-        const inputDataSeries = inputConfigKeys.map(configKey => feedHistoryByConfigKey[configKey])
+        const inputConfigKey = $(this).attr("data-input-config-key")
+        const inputDataSeries = feedHistoryByConfigKey[inputConfigKey]
 
-        const outputConfigKeys = $(this).attr("outputFeeds").split(",").map(feedName => feedName.trim())
-        const outputDataSeries = outputConfigKeys.map(configKey => feedHistoryByConfigKey[configKey])
+        const outputConfigKey = $(this).attr("data-output-config-key")
+        const outputDataSeries = feedHistoryByConfigKey[outputConfigKey]
 
         hideEfficiency = false
         if ($(this).attr("hideEfficiency") == 1) hideEfficiency = true
@@ -66,9 +66,13 @@ async function updateWindowSummary(feedHistoryByConfigKey, windowTimeInterval) {
         hideConsumption = false
         if ($(this).attr("hideConsumption") == 1) hideConsumption = true
 
-        const summary = energySummary(inputDataSeries, outputDataSeries, windowTimeInterval, hideEfficiency, hideConsumption)
-
-        $(this).text(summary)
+        if (inputDataSeries && outputDataSeries) {
+            const summary = energySummary(inputDataSeries, outputDataSeries, windowTimeInterval, hideEfficiency, hideConsumption)
+            $(this).text(summary)
+        } else {
+            // Not enough feeds configured for this summary
+            $(this).text("")
+        }
 
     })
 
