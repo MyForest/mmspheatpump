@@ -1,0 +1,5 @@
+{
+    "title": "MMSP Heat Pump",
+    "description": "Realtime status of your heat pump as well as detailed analysis of the behaviour. Great for exploring experiments.<br>Will auto-configure with the MMSP ASHP device.",
+    "status": "Development"
+}

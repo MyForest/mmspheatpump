@@ -1,0 +1,29 @@
+.current-status table {
+    width: 100vw;
+    text-align: center;
+    line-height: unset;
+    font-size: unset;
+}
+
+.current-status .title {
+    font-size: 120%;
+    margin-top: .4em
+}
+
+[liveValueFeed] {
+    font-size: 200%;
+    line-height: 1.2em;
+}
+
+img[toggleFeed], [toggleFeed] img {
+    height: 1em;
+}
+
+.heating {
+    /* This makes the content red (images or text) */
+    filter: invert(40%) brightness(100%) sepia(100%) hue-rotate(-50deg) saturate(800%);
+}
+
+.col1 {
+    line-height: unset;
+}

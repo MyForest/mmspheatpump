@@ -1,0 +1,298 @@
+{
+    "FlowTemperature": {
+        "displayOptions": {
+            "label": "Flow",
+            "color": "red",
+            "fixed": 1
+        },
+        "type": "feed",
+        "autoname": "FlowTemperature",
+        "engine": 5,
+        "optional": true,
+        "description": "The temperature of the hot fluid coming from the heat pump in degrees Celsius (°C)"
+    },
+    "ReturnTemperature": {
+        "displayOptions": {
+            "label": "Return",
+            "color": "darkgreen",
+            "fixed": 1
+        },
+        "type": "feed",
+        "autoname": "ReturnTemperature",
+        "engine": 5,
+        "optional": true,
+        "description": "The temperature of the cool fluid returning to the heat pump in degrees Celsius (°C)"
+    },
+    "OutdoorTemperature": {
+        "displayOptions": {
+            "label": "Outside",
+            "color": "gold",
+            "fixed": 1
+        },
+        "type": "feed",
+        "autoname": "OutdoorTemperature",
+        "engine": 5,
+        "optional": true,
+        "description": "The temperature of the air reported by the heat pump in degrees Celsius (°C)"
+    },
+    "TargetHCTemperatureZone1": {
+        "displayOptions": {
+            "label": "Desired",
+            "color": "blue"
+        },
+        "type": "feed",
+        "autoname": "TargetHCTemperatureZone1",
+        "engine": 5,
+        "optional": true,
+        "description": "The flow temperature the flow controller is aiming for in Zone1 in degrees Celsius (°C)"
+    },
+    "CoP": {
+        "displayOptions": {
+            "label": "Co-efficient of Performance",
+            "color": "maroon",
+            "scale": 100,
+            "scaledUnit": "%",
+            "fixed": 0
+        },
+        "type": "feed",
+        "autoname": "CoP",
+        "engine": "5",
+        "optional": true,
+        "description": "Realtime Co-efficient of Performance"
+    },
+    "WaterPump1Status": {
+        "displayOptions": {
+            "label": "Main",
+            "color": "green"
+        },
+        "type": "feed",
+        "autoname": "WaterPump1Status",
+        "engine": 5,
+        "optional": true,
+        "description": "Main pump on / off"
+    },
+    "WaterPump2Status": {
+        "displayOptions": {
+            "label": "Space Heating",
+            "color": "red"
+        },
+        "type": "feed",
+        "autoname": "WaterPump2Status",
+        "engine": 5,
+        "optional": true,
+        "description": "Zone1 space heating pump on / off"
+    },
+    "WaterPump4Status": {
+        "displayOptions": {
+            "label": "Hot Water",
+            "color": "blue"
+        },
+        "type": "feed",
+        "autoname": "WaterPump4Status",
+        "engine": 5,
+        "optional": true,
+        "description": "Hot water pump on / off"
+    },
+    "TankWaterTemperature": {
+        "displayOptions": {
+            "label": "Tank",
+            "color": "gold"
+        },
+        "type": "feed",
+        "autoname": "TankWaterTemperature",
+        "engine": 5,
+        "optional": true,
+        "description": "The temperature of the hot water tank in degrees Celsius (°C). Often this is the bottom of the tank."
+    },
+    "SetTankWaterTemperature": {
+        "displayOptions": {
+            "label": "Desired",
+            "color": "blue"
+        },
+        "type": "feed",
+        "autoname": "SetTankWaterTemperature",
+        "engine": 5,
+        "optional": true,
+        "description": "The desired temperature of the hot water tank in degrees Celsius (°C)"
+    },
+    "solar": {
+        "displayOptions": {
+            "label": "Solar",
+            "color": "gold",
+            "precision": 2,
+            "scale": 0.001,
+            "scaledUnit": "kW"
+        },
+        "type": "feed",
+        "autoname": "solar",
+        "engine": 5,
+        "optional": true,
+        "description": "Local solar generation in watts (W)"
+    },
+    "HeatingEnergyConsumedRate1": {
+        "displayOptions": {
+            "label": "Space Heating Consumed",
+            "color": "red",
+            "precision": 2,
+            "scale": 0.001,
+            "scaledUnit": "kW"
+        },
+        "type": "feed",
+        "autoname": "HeatingEnergyConsumedRate1",
+        "engine": 5,
+        "optional": true,
+        "description": "The power consumed by the heat pump for space heating in watts (W)"
+    },
+    "HeatingEnergyProducedRate1": {
+        "displayOptions": {
+            "label": "Space Heating Produced",
+            "color": "green",
+            "precision": 2,
+            "scale": 0.001,
+            "scaledUnit": "kW"
+        },
+        "type": "feed",
+        "autoname": "HeatingEnergyProducedRate1",
+        "engine": 5,
+        "optional": true,
+        "description": "The power produced by the heat pump for space heating in watts (W)"
+    },
+    "HeatingEnergyConsumed1": {
+        "type": "feed",
+        "autoname": "HeatingEnergyConsumed1",
+        "engine": 5,
+        "optional": true,
+        "description": "The energy consumed by the heat pump for space heating in watt hours (Wh)"
+    },
+    "HeatingEnergyProduced1": {
+        "type": "feed",
+        "autoname": "HeatingEnergyProduced1",
+        "engine": 5,
+        "optional": true,
+        "description": "The energy produced by the heat pump for space heating in watt hours (Wh)"
+    },
+    "HotWaterEnergyConsumedRate1": {
+        "displayOptions": {
+            "label": "Hot Water Consumed",
+            "color": "red",
+            "precision": 2,
+            "scale": 0.001,
+            "scaledUnit": "kW"
+        },
+        "type": "feed",
+        "autoname": "HotWaterEnergyConsumedRate1",
+        "engine": 5,
+        "optional": true,
+        "description": "The power consumed by the heat pump for water heating in watts (W)"
+    },
+    "HotWaterEnergyProducedRate1": {
+        "displayOptions": {
+            "label": "Hot Water Produced",
+            "color": "green",
+            "precision": 2,
+            "scale": 0.001,
+            "scaledUnit": "kW"
+        },
+        "type": "feed",
+        "autoname": "HotWaterEnergyProducedRate1",
+        "engine": 5,
+        "optional": true,
+        "description": "The power produced by the heat pump for water heating in watts (W)"
+    },
+    "HotWaterEnergyConsumed1": {
+        "type": "feed",
+        "autoname": "HotWaterEnergyConsumed1",
+        "engine": 5,
+        "optional": true,
+        "description": "The energy consumed by the heat pump for water heating in watt hours (Wh)"
+    },
+    "HotWaterEnergyProduced1": {
+        "type": "feed",
+        "autoname": "HotWaterEnergyProduced1",
+        "engine": 5,
+        "optional": true,
+        "description": "The energy produced by the heat pump for water heating in watt hours (Wh)"
+    },
+    "TotalEnergyConsumedRate1": {
+        "displayOptions": {
+            "label": "Using",
+            "color": "red",
+            "precision": 2,
+            "scale": 0.001,
+            "scaledUnit": "kW"
+        },
+        "type": "feed",
+        "autoname": "TotalEnergyConsumedRate1",
+        "engine": 5,
+        "optional": true,
+        "description": "The power consumed by the heat pump in watts (W)"
+    },
+    "TotalEnergyProducedRate1": {
+        "displayOptions": {
+            "label": "Producing",
+            "color": "green",
+            "precision": 2,
+            "scale": 0.001,
+            "scaledUnit": "kW"
+        },
+        "type": "feed",
+        "autoname": "TotalEnergyProducedRate1",
+        "engine": 5,
+        "optional": true,
+        "description": "The power produced by the heat pump in watts (W)"
+    },
+    "TotalEnergyConsumed1": {
+        "type": "feed",
+        "autoname": "TotalEnergyConsumed1",
+        "engine": 5,
+        "optional": true,
+        "description": "The energy consumed by the heat pump in watt hours (Wh)"
+    },
+    "TotalEnergyProduced1": {
+        "type": "feed",
+        "autoname": "TotalEnergyProduced1",
+        "engine": 5,
+        "optional": true,
+        "description": "The energy produced by the heat pump in watt hours (Wh)"
+    },
+    "HeatPumpFrequency": {
+        "displayOptions": {
+            "label": "Next Iteration",
+            "color": "blue",
+            "precision": 2,
+            "scale": 0.001,
+            "scaledUnit": "kW"
+        },
+        "type": "feed",
+        "autoname": "HeatPumpFrequency",
+        "engine": 5,
+        "optional": true,
+        "description": "The intended energy to be consumed by the heat pump in the next cycle in watt hours (Wh)"
+    },
+    "RenewableHeatEnergy": {
+        "displayOptions": {
+            "label": "Captured Power",
+            "color": "gold",
+            "precision": 2,
+            "scale": 0.001,
+            "scaledUnit": "kW"
+        },
+        "type": "feed",
+        "autoname": "RenewableHeatEnergy",
+        "engine": 5,
+        "optional": true,
+        "description": "The renewable power produced by the heat pump in watts (W)"
+    },
+    "UnitCost": {
+        "type": "value",
+        "default": 0.145,
+        "name": "Unit cost",
+        "description": "Unit cost of 1 kWh of electricity in your currency, for example £/kWh"
+    },
+    "Currency": {
+        "type": "value",
+        "default": "£",
+        "name": "Currency",
+        "description": "Currency symbol (£,$..)"
+    }
+}

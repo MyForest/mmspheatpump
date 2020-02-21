@@ -1,0 +1,25 @@
+#appsetup_image {
+    width: 90%;
+}
+
+#updater {
+    display: inline-block;
+    text-align: right;
+}
+
+.col1-inner {
+    display: flex;
+    flex-direction: column;
+}
+
+.processing {
+    background-color: peachpuff !important;
+    opacity: 20% !important;
+}
+
+.section-heading {
+    font-size: 140%;
+    font-weight: bold;
+    line-height: 140%;
+    padding-top: .7vh;
+}
