@@ -11,6 +11,13 @@ async function updateLiveValues() {
 
         const configKey = jqueryElement.attr("liveValueFeed")
 
+        const configItem = config.app[configKey]
+
+        if (configItem == null) {
+            console.error("It looks like a developer error has included a config key for " + configKey)
+            return;
+        }
+
         const displayOptions = config.app[configKey].displayOptions || {}
         if (displayOptions.scale == null) displayOptions.scale = 1;
 
