@@ -66,7 +66,7 @@ async function updater() {
         if (previousNewest != newestFeed) {
             // Something has a new timestamp (of course the actual values may not have changed!)
             // TODO: Investigate /Lib/timeseries.js
-            $("#updater").addClass("processing")
+            $(".feed-refresh-indicator").addClass("processing")
             try {
 
                 const interval = view.end - view.start
@@ -76,7 +76,7 @@ async function updater() {
                 await loadDataAndRenderCharts()
                 previousNewest = newestFeed
             } finally {
-                $("#updater").removeClass("processing")
+                $(".feed-refresh-indicator").removeClass("processing")
             }
         }
     }

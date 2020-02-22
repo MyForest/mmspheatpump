@@ -2,9 +2,8 @@
     width: 90%;
 }
 
-#updater {
-    display: inline-block;
-    text-align: right;
+.feed-refresh-indicator {
+    display: inline;
 }
 
 .col1-inner {

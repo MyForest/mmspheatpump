@@ -45,7 +45,7 @@
                         <span class="toggle" toggleFeed="WaterPump1Status" toggleClass="heating">Live Heat Pump Status</span>
                         <img toggleFeed="WaterPump2Status" toggleClass="heating" src="<?php echo $appPublicRoot; ?>images/radiator_128.png">
                         <img toggleFeed="WaterPump4Status" toggleClass="heating" src="<?php echo $appPublicRoot; ?>images/cylinder_128.png">
-                        <div id="updater"></div>
+                        <div class="feed-refresh-indicator"><-0-></div>
                     </div>
                 </div>
 
