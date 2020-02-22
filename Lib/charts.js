@@ -1,18 +1,6 @@
 let chartSeriesByConfigKey = {};
 let flot_font_size = 12;
 
-async function updateGraph() {
-    // Use this to update the endpoint in realtime
-
-    const interval = view.end - view.start
-    if (interval < (7200 * 1000)) {
-        view.end = newestFeed * 1000;
-        view.start = view.end - interval
-        console.log("Updated start and end of rolling window", view.start, view.end, interval / 1000)
-    }
-    await loadDataAndRenderCharts();
-}
-
 async function loadDataAndRenderCharts() {
 
     if (view.end == 0) return;
@@ -23,6 +11,10 @@ async function loadDataAndRenderCharts() {
     var end = view.end;
     var npoints = 1200;
     const timeInterval = (end - start) / 1000;
+
+    try {
+        $(".time-window").html(timeInterval + "s")
+    } catch{ }
 
     var interval = timeInterval / npoints;
     interval = view.round_interval(interval);
