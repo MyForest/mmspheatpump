@@ -25,7 +25,6 @@
 <script type="text/javascript" src="<?php echo $appPublicRoot; ?>Lib/time.js"></script>
 <script type="text/javascript" src="<?php echo $appPublicRoot; ?>Lib/current-status.js"></script>
 <script type="text/javascript" src="<?php echo $appPublicRoot; ?>Lib/energy-summary.js"></script>
-<script type="text/javascript" src="<?php echo $appPublicRoot; ?>Lib/auto-updater.js"></script>
 
 
 <div>
@@ -123,8 +122,12 @@
                     <span class="bluenav duration" duration='3'>3h</span>
                     <span class="bluenav duration" duration='1'>1h</span>
                     <span class="bluenav duration" duration='0.166'>10m</span>
+                    <span class="bluenav update-controls auto-update-enabled">Show Latest</span>
 
-                    <div class="block-title review-mode">Review</div>
+                    <div class="block-title">
+                        <span class="review-mode">Watching</span>
+                        <span class="time-window"></span>
+                    </div>
                 </div>
 
 
@@ -255,4 +258,5 @@
 </script>
 
 <!-- We need the HTML elements to exist so we can bind events to them -->
+<script type="text/javascript" src="<?php echo $appPublicRoot; ?>Lib/auto-updater.js"></script>
 <script type="text/javascript" src="<?php echo $appPublicRoot; ?>Lib/time-navigation.js"></script>
