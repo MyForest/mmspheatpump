@@ -1,13 +1,18 @@
 /**Use the first and last readings to work out how much power we've used */
-function kiloWattHoursUsed(kilowattHoursFeed) {
-    return kilowattHoursFeed[kilowattHoursFeed.length - 1][1] - kilowattHoursFeed[0][1]
+function kiloWattHoursUsed(kilowattHoursSeries) {
+
+    const readingCount = kilowattHoursSeries.length;
+    if (readingCount < 2) return 0;
+
+    return kilowattHoursSeries[readingCount - 1][1] - kilowattHoursSeries[0][1]
+
 }
 
 /**Describe the efficiency, cost and power consumption of these two feeds */
-function energySummary(inputFeed, outputFeed, interval, hideEfficiency, hideConsumption) {
+function energySummary(inputDataSeries, outputDataSeries, interval, hideEfficiency, hideConsumption) {
 
-    const consumed = kiloWattHoursUsed(inputFeed)
-    const produced = kiloWattHoursUsed(outputFeed)
+    const consumed = kiloWattHoursUsed(inputDataSeries)
+    const produced = kiloWattHoursUsed(outputDataSeries)
 
     // Check we can perform the relevant maths
     if (consumed == 0) return ""
