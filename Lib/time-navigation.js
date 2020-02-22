@@ -10,6 +10,10 @@ async function showHumanWeAreLoadingCharts(whatTheyClicked) {
 
 $(".zoomout").click(function () { view.zoomout(); showHumanWeAreLoadingCharts($(this)); });
 $(".zoomin").click(function () { view.zoomin(); showHumanWeAreLoadingCharts($(this)); });
+
+// Although this suits my personal choice, it seems bad to deviate from the behaviour elsewhere in Emoncms
+view.pan_speed = 1
+
 $(".panright").click(function () { view.panright(); showHumanWeAreLoadingCharts($(this)); });
 $(".panleft").click(function () { view.panleft(); showHumanWeAreLoadingCharts($(this)); });
 
