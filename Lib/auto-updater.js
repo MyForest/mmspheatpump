@@ -1,6 +1,7 @@
 var lastUpdate = null;
 var newestFeed = null;
 var oldestFeed = null;
+let autoUpdate = true;
 
 const feedsByConfigKey = {};
 
@@ -31,6 +32,19 @@ async function updateFeedCache() {
     }
 }
 
+async function setAutoRefresh(enabled) {
+
+    autoUpdate = enabled
+
+    if (autoUpdate) {
+        $(".update-controls").addClass("auto-update-enabled")
+        $(".review-mode").html("Watching")
+    } else {
+        $(".update-controls").removeClass("auto-update-enabled")
+        $(".review-mode").html("Reviewing")
+    }
+}
+
 async function updater() {
 
     await updateFeedCache()
@@ -48,17 +62,18 @@ async function updater() {
     // Start updating the current status, we'll await it later
     const currentStatusPromise = updateCurrentStatus();
 
-    // Update the graphs
-    const timeInterval = (view.end - view.start) / 1000;
-    if (timeInterval > 7200) {
-        $(".review-mode").html("Review - not updating")
-    } else {
-        $(".review-mode").html("Watching with rolling window of " + timeInterval + " seconds")
-
+    if (autoUpdate) {
         if (previousNewest != newestFeed) {
+            // Something has a new timestamp (of course the actual values may not have changed!)
+            // TODO: Investigate /Lib/timeseries.js
             $("#updater").addClass("processing")
             try {
-                await updateGraph()
+
+                const interval = view.end - view.start
+                view.end = newestFeed * 1000;
+                view.start = view.end - interval
+                console.log("Updated start and end of rolling window", view.start, view.end, interval / 1000)
+                await loadDataAndRenderCharts()
                 previousNewest = newestFeed
             } finally {
                 $("#updater").removeClass("processing")
@@ -68,5 +83,19 @@ async function updater() {
 
     await currentStatusPromise;
     lastUpdate = new Date();
-
 }
+
+$(".update-controls").click(async function () {
+
+    setAutoRefresh(!autoUpdate)
+
+    if (autoUpdate) {
+        const interval = view.end - view.start
+        view.end = newestFeed * 1000;
+        view.start = view.end - interval
+        console.log("Updated start and end of rolling window", view.start, view.end, interval / 1000)
+
+        await loadDataAndRenderCharts()
+    }
+
+});
