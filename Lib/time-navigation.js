@@ -35,5 +35,7 @@ $(".chart").bind("plotselected", function (_event, ranges) {
     view.start = ranges.xaxis.from;
     view.end = ranges.xaxis.to;
 
+    setAutoRefresh(false)
+
     showHumanWeAreLoadingCharts($(this));
 });
