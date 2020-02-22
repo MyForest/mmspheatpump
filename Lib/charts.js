@@ -1,21 +1,42 @@
 let chartSeriesByConfigKey = {};
 let flot_font_size = 12;
 
+// Let's make the date formatting sane if we can
+try {
+    const locale = window.navigator.userLanguage || window.navigator.language;
+    moment.locale(locale)
+} catch{
+    console.warn("Unable to set date formatting locale")
+}
+
+async function indicateTimeWindow(start, end, timeInterval) {
+
+    const humanTime = humanizeDuration(timeInterval * 1000, { largest: 2, round: true })
+    $(".time-window").html(humanTime)
+
+    const humanStart = moment(start).calendar()
+    const humanEnd = moment(end).calendar()
+
+
+    let humanFriendlyMoments = humanStart;
+    if (humanStart != humanEnd) humanFriendlyMoments += " to " + humanEnd
+    $(".time-window").attr("title", humanFriendlyMoments)
+}
+
 async function loadDataAndRenderCharts() {
 
     if (view.end == 0) return;
     if (view.end <= view.start) console.log("Odd view times:", view.end, view.start)
 
+    // Turn off auto-refresh if we've wandered into the past
+    if (view.end < (newestFeed * 1000)) setAutoRefresh(false)
 
     var start = view.start;
     var end = view.end;
     var npoints = 1200;
     const timeInterval = (end - start) / 1000;
 
-    try {
-        const humanTime = humanizeDuration(timeInterval * 1000, { largest: 2, round: true })
-        $(".time-window").html(humanTime)
-    } catch{ }
+    indicateTimeWindow(start, end, timeInterval)
 
     var interval = timeInterval / npoints;
     interval = view.round_interval(interval);
