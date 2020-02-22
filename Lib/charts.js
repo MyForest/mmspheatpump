@@ -13,7 +13,8 @@ async function loadDataAndRenderCharts() {
     const timeInterval = (end - start) / 1000;
 
     try {
-        $(".time-window").html(timeInterval + "s")
+        const humanTime = humanizeDuration(timeInterval * 1000, { largest: 2, round: true })
+        $(".time-window").html(humanTime)
     } catch{ }
 
     var interval = timeInterval / npoints;

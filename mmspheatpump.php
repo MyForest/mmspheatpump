@@ -14,6 +14,9 @@
 <script type="text/javascript" src="<?php echo $path; ?>Modules/app/Lib/vis.helper.js?v=<?php echo $v; ?>"></script>
 
 
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/humanize-duration/3.21.0/humanize-duration.min.js"></script>
+
+
 <link href="<?php echo $appPublicRoot; ?>style/current-status.css" rel="stylesheet">
 <link href="<?php echo $appPublicRoot; ?>style/charts.css" rel="stylesheet">
 <link href="<?php echo $appPublicRoot; ?>style/main.css" rel="stylesheet">
