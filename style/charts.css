@@ -20,3 +20,7 @@
  .chart>.legend {
      margin-left: 50px;
  }
+
+ .auto-update-enabled, .auto-update-enabled:hover {
+     background-color: rgb(41, 112, 43)
+ }
