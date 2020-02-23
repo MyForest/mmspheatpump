@@ -5,6 +5,29 @@ async function updateCurrentStatus() {
     void updateToggles()
 }
 
+function niceDisplayValue(value, configKey) {
+
+    const displayOptions = config.app[configKey].displayOptions || {}
+    if (displayOptions.scale == null) displayOptions.scale = 1;
+
+    const scaledValue = value * displayOptions.scale;
+
+    if (displayOptions.precision != null) return scaledValue.toPrecision(displayOptions.precision)
+    if (displayOptions.fixed != null) return scaledValue.toFixed(displayOptions.fixed)
+
+    return scaledValue;
+}
+
+function niceDisplayUnit(configKey) {
+    const displayOptions = config.app[configKey].displayOptions || {}
+
+    if (displayOptions.scaledUnit) return displayOptions.scaledUnit
+
+    const feedMeta = feedsByConfigKey[configKey]
+    return feedMeta.unit
+
+}
+
 async function updateLiveValues() {
     $("[liveValueFeed]").each(function () {
         const jqueryElement = $(this)
@@ -18,25 +41,15 @@ async function updateLiveValues() {
             return;
         }
 
-        const displayOptions = config.app[configKey].displayOptions || {}
-        if (displayOptions.scale == null) displayOptions.scale = 1;
-
         const feedMeta = feedsByConfigKey[configKey]
 
         if (feedMeta) {
 
             const value = feedMeta.value
 
-            const scaledValue = value * displayOptions.scale;
-            const unit = displayOptions.scaledUnit || feedMeta.unit;
-
-            if (scaledValue) {
-                if (displayOptions.precision != null) jqueryElement.text(scaledValue.toPrecision(displayOptions.precision))
-                if (displayOptions.fixed != null) jqueryElement.text(scaledValue.toFixed(displayOptions.fixed))
-                // If you didn't set either of those then no value will show
-
-                jqueryElement.next().text(unit)
-
+            if (value) {
+                jqueryElement.text(niceDisplayValue(value, configKey))
+                jqueryElement.next().text(niceDisplayUnit(configKey))
             } else {
                 jqueryElement.text("---")
                 jqueryElement.next().text("")
