@@ -183,7 +183,7 @@ async function drawChart(jQueryElement) {
     const configKeys = jQueryElement.attr("data-config-keys").split(",").map(s => s.trim())
 
     const dataSeries = configKeys.map(configKey => Object.assign({}, chartSeriesByConfigKey[configKey]))
-    const seriesWithHistory = dataSeries.filter(ds => ds != null)
+    const seriesWithHistory = dataSeries.filter(ds => ds != null && Object.keys(ds).length > 0)
 
     // Find out more about the options at https://github.com/flot/flot/blob/master/API.md
 
@@ -199,7 +199,7 @@ async function drawChart(jQueryElement) {
             },
             yaxis: {
                 font: { size: flot_font_size, color: "black" },
-                label: getYAxisLabel(dataSeries, jQueryElement.attr("data-label"))
+                label: getYAxisLabel(seriesWithHistory, jQueryElement.attr("data-label"))
             },
             grid: {
                 borderWidth: 0,
@@ -213,7 +213,7 @@ async function drawChart(jQueryElement) {
             selection: { mode: "x" },
             legend: {
                 position: "NW",
-                noColumns: dataSeries.length,
+                noColumns: seriesWithHistory.length,
                 color: "black",
                 sorted: true
             }
@@ -221,7 +221,7 @@ async function drawChart(jQueryElement) {
 
         jQueryElement.options = options;
 
-        setYAxisTickFormatter(dataSeries, jQueryElement.options.yaxis, jQueryElement)
+        setYAxisTickFormatter(seriesWithHistory, jQueryElement.options.yaxis, jQueryElement)
 
     }
 
