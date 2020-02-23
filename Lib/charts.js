@@ -124,6 +124,7 @@ async function drawChart(jQueryElement) {
                 color: "lightgray",
                 borderWidth: 0,
                 clickable: true,
+                hoverable: true,
                 margin: { top: 25, left: 20 }
             },
             series: {
@@ -230,3 +231,61 @@ function resize() {
 $(function () {
     $(document).on('window.resized hidden.sidebar.collapse shown.sidebar.collapse', resize)
 })
+
+async function showValueInLegendForTimestamp(chart, timestamp) {
+
+    const configKeysForChart = chart.dataset.configKeys.split(",").map(k => k.trim());
+
+    const chartSeriesByLabel = {}
+
+    configKeysForChart.map(configKey => {
+        const series = chartSeriesByConfigKey[configKey]
+        if (series) {
+            chartSeriesByLabel[series.label] = configKey
+        } else {
+            // Vanishes during refreshes
+        }
+    })
+
+
+    $(".legendLabel", chart).each(function () {
+
+        const existing = $(this).html()
+        const originalLabel = existing.split("=")[0].trim()
+
+        const configKey = chartSeriesByLabel[originalLabel];
+        const chartSeries = chartSeriesByConfigKey[configKey]
+        if (chartSeries) {
+            const feedHistory = chartSeries.data
+
+            let valueAtTimestamp = null
+            for ([datapointTime, value] of feedHistory) {
+                if (datapointTime > timestamp) break // We've gone past the timestamp
+                valueAtTimestamp = value
+            }
+
+            if (valueAtTimestamp) {
+                const displayValue = niceDisplayValue(valueAtTimestamp, configKey)
+                const displayUnits = niceDisplayUnit(configKey)
+                const newLabel = originalLabel + " = " + displayValue + displayUnits;
+                $(this).html(newLabel)
+            } else {
+                // Wipe out the value display to indicate there isn't one
+                $(this).html(originalLabel)
+            }
+        } else {
+            // Vanishes during refreshes
+        }
+    })
+}
+
+$(".chart").bind("plothover", function (_event, pos) {
+
+    if (pos.x) {
+        // Notably we want to show a synchronized value in all the charts for the time the user is hovering over with their mouse
+        $(".chart").each(function (_chartIndex, chart) {
+            showValueInLegendForTimestamp(chart, pos.x)
+        })
+    }
+
+});
