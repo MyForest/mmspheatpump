@@ -7,7 +7,8 @@ async function updateCurrentStatus() {
 
 function niceDisplayValue(value, configKey) {
 
-    const displayOptions = config.app[configKey].displayOptions || {}
+
+    const displayOptions = chartSeriesByConfigKey[configKey] || {}
     if (displayOptions.scale == null) displayOptions.scale = 1;
 
     const scaledValue = value * displayOptions.scale;
@@ -19,7 +20,7 @@ function niceDisplayValue(value, configKey) {
 }
 
 function niceDisplayUnit(configKey) {
-    const displayOptions = config.app[configKey].displayOptions || {}
+    const displayOptions = chartSeriesByConfigKey[configKey] || {}
 
     if (displayOptions.scaledUnit) return displayOptions.scaledUnit
 
