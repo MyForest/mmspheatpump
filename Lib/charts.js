@@ -118,7 +118,6 @@ async function drawChart(jQueryElement) {
                 label: getYAxisLabel(dataSeries, jQueryElement.attr("data-label"))
             },
             grid: {
-                color: "lightgray",
                 borderWidth: 0,
                 clickable: true,
                 hoverable: true,
