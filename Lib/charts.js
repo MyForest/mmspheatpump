@@ -50,6 +50,9 @@ function createCoPFeed(inputFeedHistory, outputFeedHistory) {
 }
 
 function createClientSideFeed(inputConfigKey, outputConfigKey, configKey) {
+
+    if (chartSeriesByConfigKey[inputConfigKey] == null || chartSeriesByConfigKey[outputConfigKey] == null) return
+
     const copFeedHistory = createCoPFeed(chartSeriesByConfigKey[inputConfigKey].data, chartSeriesByConfigKey[outputConfigKey].data)
 
     chartSeriesByConfigKey[configKey] = {
