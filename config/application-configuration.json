@@ -286,5 +286,11 @@
         "default": 1,
         "name": "IncludeNominalEfficiences",
         "description": "Should nominal efficiencies for a heat pump be shown"
+    },
+    "DesignFlowTemperature": {
+        "type": "value",
+        "default": 40,
+        "name": "DesignFlowTemperature",
+        "description": "When showing nominal efficiencies, what design flow temp should be used"
     }
 }

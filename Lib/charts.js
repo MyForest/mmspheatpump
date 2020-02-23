@@ -68,7 +68,7 @@ function createClientSideCoPFeed(inputConfigKey, outputConfigKey, configKey) {
 
 function createClientSideNominalEfficiencyFeeds(outsideTemperatureConfigKey, flowTemperatureConfigKey) {
 
-    const designTemperature = 40
+    const designTemperature = config.app.DesignFlowTemperature.value
 
     const outsideTemperatureSeries = chartSeriesByConfigKey[outsideTemperatureConfigKey]
     const flowTemperatureSeries = chartSeriesByConfigKey[flowTemperatureConfigKey]
