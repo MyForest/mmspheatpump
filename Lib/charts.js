@@ -49,6 +49,19 @@ function createCoPFeed(inputFeedHistory, outputFeedHistory) {
     })
 }
 
+function createClientSideFeed(inputConfigKey, outputConfigKey, configKey) {
+    const copFeedHistory = createCoPFeed(chartSeriesByConfigKey[inputConfigKey].data, chartSeriesByConfigKey[outputConfigKey].data)
+
+    chartSeriesByConfigKey[configKey] = {
+        data: copFeedHistory,
+        "label": configKey,
+        "scale": 100,
+        "scaledUnit": "%",
+        "fixed": 0
+    }
+
+}
+
 async function loadDataAndRenderCharts() {
 
     if (view.end == 0) return;
@@ -95,21 +108,9 @@ async function loadDataAndRenderCharts() {
         }
     }))
 
-    try {
-        const copFeedHistory = createCoPFeed(feedHistoryByConfigKey["TotalEnergyConsumedRate1"], feedHistoryByConfigKey["TotalEnergyProducedRate1"])
-
-        chartSeriesByConfigKey["CoP"] = {
-            data: copFeedHistory,
-            "label": "Co-efficient of Performance",
-            "color": "maroon",
-            "scale": 100,
-            "scaledUnit": "%",
-            "fixed": 0
-        }
-
-    } catch (err) {
-        console.error(err)
-    }
+    createClientSideFeed("HeatingEnergyConsumedRate1", "HeatingEnergyProducedRate1", "Space Heating CoP")
+    createClientSideFeed("HotWaterEnergyConsumedRate1", "HotWaterEnergyProducedRate1", "Hot Water CoP")
+    createClientSideFeed("TotalEnergyConsumedRate1", "TotalEnergyProducedRate1", "Total CoP")
 
     await Promise.all([
         updateWindowSummary(feedHistoryByConfigKey, timeInterval),

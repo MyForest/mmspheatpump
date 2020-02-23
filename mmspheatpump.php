@@ -56,7 +56,7 @@
                             <td>
                                 <div class="title">Efficiency</div>
                                 <div>
-                                    <span liveValueFeed="CoP" scale="100" fixed="0"></span>
+                                    <span liveValueFeed="Total CoP" scale="100" fixed="0"></span>
                                     <span class="units"></span>
                                 </div>
                             </td>
@@ -150,7 +150,7 @@
 
                 <div>
                     <div class="placeholder_bound">
-                        <div data-config-keys="CoP" class="chart"></div>
+                        <div data-config-keys="Space Heating CoP,Hot Water CoP" class="chart"></div>
                     </div>
                 </div>
 
