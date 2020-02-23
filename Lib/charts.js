@@ -1,5 +1,6 @@
 let chartSeriesByConfigKey = {};
 let flot_font_size = 12;
+let nominalEfficiencies = null;
 
 // Let's make the date formatting sane if we can
 try {
@@ -49,7 +50,7 @@ function createCoPFeed(inputFeedHistory, outputFeedHistory) {
     })
 }
 
-function createClientSideFeed(inputConfigKey, outputConfigKey, configKey) {
+function createClientSideCoPFeed(inputConfigKey, outputConfigKey, configKey) {
 
     if (chartSeriesByConfigKey[inputConfigKey] == null || chartSeriesByConfigKey[outputConfigKey] == null) return
 
@@ -58,6 +59,54 @@ function createClientSideFeed(inputConfigKey, outputConfigKey, configKey) {
     chartSeriesByConfigKey[configKey] = {
         data: copFeedHistory,
         "label": configKey,
+        "scale": 100,
+        "scaledUnit": "%",
+        "fixed": 0
+    }
+
+}
+
+function createClientSideNominalEfficiencyFeeds(outsideTemperatureConfigKey, flowTemperatureConfigKey) {
+
+    const designTemperature = 40
+
+    const outsideTemperatureSeries = chartSeriesByConfigKey[outsideTemperatureConfigKey]
+    const flowTemperatureSeries = chartSeriesByConfigKey[flowTemperatureConfigKey]
+
+    if (outsideTemperatureSeries == null || flowTemperatureSeries == null) return
+
+    // Naively assumes the feeds are aligned in time and there's no gaps in either feed
+
+    const copAtFlowFeed = []
+    const copAtDesign = []
+
+    outsideTemperatureSeries.data.map((row, index) => {
+
+        const outdoorTemp = row[1]
+        const flowTemp = Math.round(flowTemperatureSeries.data[index][1], 0)
+
+        if (nominalEfficiencies[flowTemp]) {
+            copAtFlowFeed.push([row[0], nominalEfficiencies[flowTemp]["nominal"][outdoorTemp]])
+        } else {
+            copAtFlowFeed.push([row[0], 0])
+        }
+        copAtDesign.push([row[0], nominalEfficiencies[designTemperature]["nominal"][outdoorTemp]])
+    })
+
+
+    chartSeriesByConfigKey["Nominal CoP@Flow"] = {
+        data: copAtFlowFeed,
+        color: "purple",
+        "label": "Nominal CoP@Flow",
+        "scale": 100,
+        "scaledUnit": "%",
+        "fixed": 0
+    }
+
+    chartSeriesByConfigKey["Nominal CoP@Design"] = {
+        data: copAtDesign,
+        color: "green",
+        "label": "Nominal CoP@" + designTemperature,
         "scale": 100,
         "scaledUnit": "%",
         "fixed": 0
@@ -91,6 +140,8 @@ async function loadDataAndRenderCharts() {
 
     // Fetch the feed history
 
+    const efficiencyPromise = fetch(applicationURL + "config/interpolated_efficiencies.json")
+
     await Promise.all(Object.keys(config.app).map(async configKey => {
         if (feedsByConfigKey[configKey]) {
             // This feed has been configured locally
@@ -111,9 +162,13 @@ async function loadDataAndRenderCharts() {
         }
     }))
 
-    createClientSideFeed("HeatingEnergyConsumedRate1", "HeatingEnergyProducedRate1", "Space Heating CoP")
-    createClientSideFeed("HotWaterEnergyConsumedRate1", "HotWaterEnergyProducedRate1", "Hot Water CoP")
-    createClientSideFeed("TotalEnergyConsumedRate1", "TotalEnergyProducedRate1", "Total CoP")
+    createClientSideCoPFeed("HeatingEnergyConsumedRate1", "HeatingEnergyProducedRate1", "Space Heating CoP")
+    createClientSideCoPFeed("HotWaterEnergyConsumedRate1", "HotWaterEnergyProducedRate1", "Hot Water CoP")
+    createClientSideCoPFeed("TotalEnergyConsumedRate1", "TotalEnergyProducedRate1", "Total CoP")
+
+    nominalEfficiencies = await (await efficiencyPromise).json()
+
+    createClientSideNominalEfficiencyFeeds("OutdoorTemperature", "FlowTemperature")
 
     await Promise.all([
         updateWindowSummary(feedHistoryByConfigKey, timeInterval),

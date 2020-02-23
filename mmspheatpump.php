@@ -150,7 +150,7 @@
 
                 <div>
                     <div class="placeholder_bound">
-                        <div data-config-keys="Space Heating CoP,Hot Water CoP" class="chart"></div>
+                        <div data-config-keys="Space Heating CoP,Hot Water CoP,Nominal CoP@Design,Nominal CoP@Flow" class="chart"></div>
                     </div>
                 </div>
 
