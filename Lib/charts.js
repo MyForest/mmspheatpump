@@ -166,9 +166,11 @@ async function loadDataAndRenderCharts() {
     createClientSideCoPFeed("HotWaterEnergyConsumedRate1", "HotWaterEnergyProducedRate1", "Hot Water CoP")
     createClientSideCoPFeed("TotalEnergyConsumedRate1", "TotalEnergyProducedRate1", "Total CoP")
 
-    nominalEfficiencies = await (await efficiencyPromise).json()
+    if (config.app.IncludeNominalEfficiences.value) {
+        nominalEfficiencies = await (await efficiencyPromise).json()
 
-    createClientSideNominalEfficiencyFeeds("OutdoorTemperature", "FlowTemperature")
+        createClientSideNominalEfficiencyFeeds("OutdoorTemperature", "FlowTemperature")
+    }
 
     await Promise.all([
         updateWindowSummary(feedHistoryByConfigKey, timeInterval),

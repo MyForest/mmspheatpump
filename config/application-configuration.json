@@ -280,5 +280,11 @@
         "default": "£",
         "name": "Currency",
         "description": "Currency symbol (£,$..)"
+    },
+    "IncludeNominalEfficiences": {
+        "type": "checkbox",
+        "default": 1,
+        "name": "IncludeNominalEfficiences",
+        "description": "Should nominal efficiencies for a heat pump be shown"
     }
 }
