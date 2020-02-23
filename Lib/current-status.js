@@ -7,7 +7,6 @@ async function updateCurrentStatus() {
 
 function niceDisplayValue(value, configKey) {
 
-
     const displayOptions = chartSeriesByConfigKey[configKey] || {}
     if (displayOptions.scale == null) displayOptions.scale = 1;
 
@@ -35,18 +34,11 @@ async function updateLiveValues() {
 
         const configKey = jqueryElement.attr("liveValueFeed")
 
-        const configItem = config.app[configKey]
+        const chartSeries = chartSeriesByConfigKey[configKey]
 
-        if (configItem == null) {
-            console.error("It looks like a developer error has included a config key for " + configKey)
-            return;
-        }
+        if (chartSeries) {
 
-        const feedMeta = feedsByConfigKey[configKey]
-
-        if (feedMeta) {
-
-            const value = feedMeta.value
+            const value = chartSeries.data[chartSeries.data.length - 1][1]
 
             if (value) {
                 jqueryElement.text(niceDisplayValue(value, configKey))

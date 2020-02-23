@@ -59,9 +59,6 @@ async function updater() {
         view.start = view.end - 3600 * 1000;
     }
 
-    // Start updating the current status, we'll await it later
-    const currentStatusPromise = updateCurrentStatus();
-
     if (autoUpdate) {
         if (previousNewest != newestFeed) {
             // Something has a new timestamp (of course the actual values may not have changed!)
@@ -81,7 +78,9 @@ async function updater() {
         }
     }
 
-    await currentStatusPromise;
+    // We're going to use the last value off the feed history so we can render client-side generated data
+    await updateCurrentStatus();
+
     lastUpdate = new Date();
 }
 
