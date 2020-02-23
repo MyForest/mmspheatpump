@@ -71,27 +71,8 @@ async function loadDataAndRenderCharts() {
 
     await Promise.all([
         updateWindowSummary(feedHistoryByConfigKey, timeInterval),
-        drawCharts(),
+        $(".chart").each(async function () { await drawChart($(this)) })
     ]);
-}
-
-
-async function drawCharts() {
-
-    const charts = []
-    $(".chart").each(async function () {
-        charts.push($(this))
-    })
-
-    await Promise.all(charts.map(
-        async chart => {
-            try {
-                await drawChart(chart)
-            } finally {
-                chart.removeClass("processing")
-            }
-        }
-    ))
 }
 
 async function drawChart(jQueryElement) {
@@ -149,6 +130,8 @@ async function drawChart(jQueryElement) {
     // Flot doesn't have native axis label support
     // We can't apply the label until the elements have been drawn
     $(".yAxis", jQueryElement).attr("data-label", jQueryElement.options.yaxis.label)
+
+    jQueryElement.removeClass("processing")
 }
 
 function getYAxisLabel(dataSeries, baseLabelText) {
