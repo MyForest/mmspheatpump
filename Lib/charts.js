@@ -23,6 +23,32 @@ async function indicateTimeWindow(start, end, timeInterval) {
     $(".time-window").attr("title", humanFriendlyMoments)
 }
 
+function createCoPFeed(inputFeedHistory, outputFeedHistory) {
+
+    // Assumes the feeds are aligned in time and there's no gaps in either feed
+    return inputFeedHistory.map((row, index, array) => {
+
+        const friends = 5
+
+        const inputFriends = array.slice(index - friends, index + friends).map(([_, value]) => value)
+        const input = inputFriends.reduce((p, value) => p + value, 0)
+
+        if (input == 0) return [row[0], 0]
+
+        const outputFriends = outputFeedHistory.slice(index - friends, index + friends).map(([_, value]) => value)
+
+        const sensibleOutputFriends = outputFriends.map((value, index) => {
+            const inputValue = inputFriends[index]
+            const upperLimit = 5 * inputValue
+            return Math.min(upperLimit, value)
+        })
+
+        const output = sensibleOutputFriends.reduce((p, value) => p + value, 0)
+
+        return [row[0], output / input]
+    })
+}
+
 async function loadDataAndRenderCharts() {
 
     if (view.end == 0) return;
@@ -68,6 +94,22 @@ async function loadDataAndRenderCharts() {
             chartSeriesByConfigKey[configKey] = chartSeriesOptionsAndData
         }
     }))
+
+    try {
+        const copFeedHistory = createCoPFeed(feedHistoryByConfigKey["TotalEnergyConsumedRate1"], feedHistoryByConfigKey["TotalEnergyProducedRate1"])
+
+        chartSeriesByConfigKey["CoP"] = {
+            data: copFeedHistory,
+            "label": "Co-efficient of Performance",
+            "color": "maroon",
+            "scale": 100,
+            "scaledUnit": "%",
+            "fixed": 0
+        }
+
+    } catch (err) {
+        console.error(err)
+    }
 
     await Promise.all([
         updateWindowSummary(feedHistoryByConfigKey, timeInterval),

@@ -46,20 +46,6 @@
         "optional": true,
         "description": "The flow temperature the flow controller is aiming for in Zone1 in degrees Celsius (°C)"
     },
-    "CoP": {
-        "displayOptions": {
-            "label": "Co-efficient of Performance",
-            "color": "maroon",
-            "scale": 100,
-            "scaledUnit": "%",
-            "fixed": 0
-        },
-        "type": "feed",
-        "autoname": "CoP",
-        "engine": "5",
-        "optional": true,
-        "description": "Realtime Co-efficient of Performance"
-    },
     "WaterPump1Status": {
         "displayOptions": {
             "label": "Main",
