@@ -111,16 +111,13 @@ async function drawChart(jQueryElement) {
                 timezone: "browser",
                 min: view.start,
                 max: view.end,
-                font: { size: flot_font_size, color: "black" },
-                reserveSpace: false
+                font: { size: flot_font_size, color: "black" }
             },
             yaxis: {
                 font: { size: flot_font_size, color: "black" },
-                reserveSpace: false,
                 label: getYAxisLabel(dataSeries, jQueryElement.attr("data-label"))
             },
             grid: {
-                show: true,
                 color: "lightgray",
                 borderWidth: 0,
                 clickable: true,
@@ -135,8 +132,7 @@ async function drawChart(jQueryElement) {
                 position: "NW",
                 noColumns: dataSeries.length,
                 color: "black",
-                sorted: true,
-                backgroundOpacity: 0
+                sorted: true
             }
         }
 
