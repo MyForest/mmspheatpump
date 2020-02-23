@@ -24,7 +24,6 @@
 
 <script type="text/javascript" src="<?php echo $appPublicRoot; ?>Lib/application-configuration.js"></script>
 <script type="text/javascript" src="<?php echo $appPublicRoot; ?>Lib/error.js"></script>
-<script type="text/javascript" src="<?php echo $appPublicRoot; ?>Lib/charts.js"></script>
 <script type="text/javascript" src="<?php echo $appPublicRoot; ?>Lib/freshness.js"></script>
 <script type="text/javascript" src="<?php echo $appPublicRoot; ?>Lib/time.js"></script>
 <script type="text/javascript" src="<?php echo $appPublicRoot; ?>Lib/current-status.js"></script>
@@ -264,3 +263,4 @@
 <!-- We need the HTML elements to exist so we can bind events to them -->
 <script type="text/javascript" src="<?php echo $appPublicRoot; ?>Lib/auto-updater.js"></script>
 <script type="text/javascript" src="<?php echo $appPublicRoot; ?>Lib/time-navigation.js"></script>
+<script type="text/javascript" src="<?php echo $appPublicRoot; ?>Lib/charts.js"></script>
