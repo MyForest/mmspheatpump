@@ -56,7 +56,7 @@
                             <td>
                                 <div class="title">Efficiency</div>
                                 <div>
-                                    <span liveValueFeed="Total CoP" scale="100" fixed="0"></span>
+                                    <span liveValueFeed="RealtimeCoP" scale="100" fixed="0"></span>
                                     <span class="units"></span>
                                 </div>
                             </td>

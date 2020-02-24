@@ -269,6 +269,20 @@
         "optional": true,
         "description": "The renewable power produced by the heat pump in watts (W)"
     },
+    "RealtimeCoP": {
+        "displayOptions": {
+            "label": "Realtime CoP",
+            "color": "maroon",
+            "scale": 100,
+            "scaledUnit": "%",
+            "fixed": 0
+        },
+        "type": "feed",
+        "autoname": "CoP",
+        "engine": "5",
+        "optional": true,
+        "description": "Realtime Co-efficient of Performance (as opposed to the averaged CoP the app calculates)"
+    },
     "UnitCost": {
         "type": "value",
         "default": 0.145,

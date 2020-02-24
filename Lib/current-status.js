@@ -34,11 +34,11 @@ async function updateLiveValues() {
 
         const configKey = jqueryElement.attr("liveValueFeed")
 
-        const chartSeries = chartSeriesByConfigKey[configKey]
+        const feedMeta = feedsByConfigKey[configKey]
 
-        if (chartSeries) {
+        if (feedMeta) {
 
-            const value = chartSeries.data[chartSeries.data.length - 1][1]
+            const value = feedMeta.value;
 
             if (value) {
                 jqueryElement.text(niceDisplayValue(value, configKey))
