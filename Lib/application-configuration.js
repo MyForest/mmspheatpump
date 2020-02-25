@@ -21,8 +21,6 @@ function show() {
     // The app configuration page makes it black so set it back
     $("body").css("background-color", "white");
 
-    resize();
-
     updater();
 
     startAutoUpdate()
