@@ -12,6 +12,15 @@ async function updateFeedCache() {
     const result = await response.json()
 
     if (result) {
+        if (result.success == false) {
+            if (result.message == "406 Not Acceptable. Route not found") {
+                // Go to login page. Sadly this will direct to the starting page afterwards, not back here
+                document.location = "./../"
+            } else {
+                $(".feed-refresh-indicator").html(result.message)
+            }
+            return
+        }
 
         Object.entries(config.app).map(([configKey, configItem]) => {
 
