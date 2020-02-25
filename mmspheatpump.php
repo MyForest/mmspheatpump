@@ -138,21 +138,14 @@
                     <span hideEfficiency="1" data-input-config-key="TotalEnergyConsumed1" data-output-config-key="TotalEnergyProduced1"></span>
                 </div>
 
-                <div>
-                    <div class="placeholder_bound">
-                        <div data-label="Power" data-config-keys="solar,HeatingEnergyConsumedRate1,HeatingEnergyProducedRate1,HotWaterEnergyConsumedRate1,HotWaterEnergyProducedRate1,HeatPumpFrequency" class="chart"></div>
-                    </div>
-                </div>
+                <div data-label="Power" data-config-keys="solar,HeatingEnergyConsumedRate1,HeatingEnergyProducedRate1,HotWaterEnergyConsumedRate1,HotWaterEnergyProducedRate1,HeatPumpFrequency" class="chart"></div>
+                
 
                 <div class="section-heading">Efficiency
                     <span hideConsumption="1" data-input-config-key="TotalEnergyConsumed1" data-output-config-key="TotalEnergyProduced1"></span>
                 </div>
 
-                <div>
-                    <div class="placeholder_bound">
-                        <div data-config-keys="Space Heating CoP,Hot Water CoP,Nominal CoP@Design,Nominal CoP@Flow" class="chart"></div>
-                    </div>
-                </div>
+                <div data-config-keys="Space Heating CoP,Hot Water CoP,Nominal CoP@Design,Nominal CoP@Flow" class="chart"></div>
 
 
                 <div class="section-heading">
@@ -163,11 +156,7 @@
                     <span class="energy-summary" data-input-config-key="HeatingEnergyConsumed1" data-output-config-key="HeatingEnergyProduced1">
                 </div>
 
-                <div>
-                    <div class="placeholder_bound">
-                        <div data-label="Temperature" data-config-keys="FlowTemperature,ReturnTemperature,OutdoorTemperature,TargetHCTemperatureZone1" class="chart"></div>
-                    </div>
-                </div>
+                <div data-label="Temperature" data-config-keys="FlowTemperature,ReturnTemperature,OutdoorTemperature,TargetHCTemperatureZone1" class="chart"></div>
 
 
                 <div class="section-heading">
@@ -178,20 +167,12 @@
                     <span class="energy-summary" data-input-config-key="HotWaterEnergyConsumed1" data-output-config-key="HotWaterEnergyProduced1">
                 </div>
 
-                <div>
-                    <div class="placeholder_bound">
-                        <div  data-label="Temperature" data-config-keys="FlowTemperature,ReturnTemperature,SetTankWaterTemperature,TankWaterTemperature" class="chart"></div>
-                    </div>
-                </div>
+                <div  data-label="Temperature" data-config-keys="FlowTemperature,ReturnTemperature,SetTankWaterTemperature,TankWaterTemperature" class="chart"></div>
 
 
                 <div class="section-heading">Pumps</div>
 
-                <div>
-                    <div class="placeholder_bound">
-                        <div data-config-keys="WaterPump1Status,WaterPump2Status,WaterPump4Status" class="chart"></div>
-                    </div>
-                </div>
+                <div data-config-keys="WaterPump1Status,WaterPump2Status,WaterPump4Status" class="chart"></div>
 
             </div>
         </div>
