@@ -89,7 +89,9 @@ async function updateToggles() {
         }
     })
 
-    const hotWaterTemperature = feedsByConfigKey["TankWaterTemperature"].value
+    if (feedsByConfigKey["TankWaterTemperature"]) {
+        const hotWaterTemperature = feedsByConfigKey["TankWaterTemperature"].value
 
-    $(".cylinder_active").attr("title", "TankWaterTemperature is " + hotWaterTemperature + " °C")
+        $(".cylinder_active").attr("title", "TankWaterTemperature is " + hotWaterTemperature + " °C")
+    }
 }
