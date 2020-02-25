@@ -19,6 +19,7 @@
 
  .chart {
      height: 17vh;
+     min-height: 200px;
  }
 
  .chart>.legend {
