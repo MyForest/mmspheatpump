@@ -185,6 +185,12 @@ async function drawChart(jQueryElement) {
     const dataSeries = configKeys.map(configKey => Object.assign({}, chartSeriesByConfigKey[configKey]))
     const seriesWithHistory = dataSeries.filter(ds => ds != null && Object.keys(ds).length > 0)
 
+    if (seriesWithHistory.length == 0) {
+        jQueryElement.addClass("chart-with-no-feeds")
+        return
+    }
+    jQueryElement.removeClass("chart-with-no-feeds")
+
     // Find out more about the options at https://github.com/flot/flot/blob/master/API.md
 
     if (jQueryElement.options == null) {
@@ -303,7 +309,7 @@ function resize() {
     height = 200
 
     placeholder.width(width);
-    placeholder_bound.height(height);
+    // placeholder_bound.height(height);
     placeholder.height(height - top_offset);
 
     drawChart();

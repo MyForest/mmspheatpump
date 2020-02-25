@@ -24,3 +24,7 @@
  .auto-update-enabled, .auto-update-enabled:hover {
      background-color: rgb(41, 112, 43)
  }
+
+ .chart-with-no-feeds {
+     display: none;
+ }
