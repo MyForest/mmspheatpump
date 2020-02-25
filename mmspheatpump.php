@@ -45,7 +45,7 @@
                         <span data-config-key="WaterPump1Status" data-toggle-class="heating">Live Heat Pump Status</span>
                         <img data-config-key="WaterPump2Status" data-toggle-class="heating" src="<?php echo $appPublicRoot; ?>images/radiator_128.png">
                         <img data-config-key="WaterPump4Status" data-toggle-class="heating" src="<?php echo $appPublicRoot; ?>images/cylinder_128.png">
-                        <div class="feed-refresh-indicator"><-0-></div>
+                        <div class="feed-refresh-indicator">...loading...</div>
                     </div>
                 </div>
 
