@@ -291,34 +291,6 @@ function setYAxisTickFormatter(dataSeries, yaxis) {
     }
 }
 
-function resize() {
-    const window_width = $(this).width();
-
-    if (window_width < 450) flot_font_size = 10;
-
-    const top_offset = 0;
-    const placeholder_bound = $('.placeholder_bound');
-    const placeholder = $('.chart');
-
-    const width = placeholder_bound.width();
-    let height = width * 0.6;
-    if (height < 250) height = 250;
-    if (height > 480) height = 480;
-    if (height > width) height = width;
-
-    height = 200
-
-    placeholder.width(width);
-    // placeholder_bound.height(height);
-    placeholder.height(height - top_offset);
-
-    drawChart();
-}
-// on finish sidebar hide/show
-$(function () {
-    $(document).on('window.resized hidden.sidebar.collapse shown.sidebar.collapse', resize)
-})
-
 async function showValueInLegendForTimestamp(chart, timestamp) {
 
     const configKeysForChart = chart.dataset.configKeys.split(",").map(k => k.trim());

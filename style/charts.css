@@ -17,6 +17,10 @@
      font-size: 100%;
  }
 
+ .chart {
+     height: 17vh;
+ }
+
  .chart>.legend {
      margin-left: 50px;
  }
