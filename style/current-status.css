@@ -15,7 +15,7 @@
     line-height: 1.2em;
 }
 
-img[toggleFeed], [toggleFeed] img {
+img[data-toggle-class], [data-toggle-class] img {
     height: 1em;
 }
 

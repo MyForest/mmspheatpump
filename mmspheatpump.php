@@ -42,9 +42,9 @@
                     </div>
 
                     <div class="block-title">
-                        <span class="toggle" toggleFeed="WaterPump1Status" toggleClass="heating">Live Heat Pump Status</span>
-                        <img toggleFeed="WaterPump2Status" toggleClass="heating" src="<?php echo $appPublicRoot; ?>images/radiator_128.png">
-                        <img toggleFeed="WaterPump4Status" toggleClass="heating" src="<?php echo $appPublicRoot; ?>images/cylinder_128.png">
+                        <span data-config-key="WaterPump1Status" data-toggle-class="heating">Live Heat Pump Status</span>
+                        <img data-config-key="WaterPump2Status" data-toggle-class="heating" src="<?php echo $appPublicRoot; ?>images/radiator_128.png">
+                        <img data-config-key="WaterPump4Status" data-toggle-class="heating" src="<?php echo $appPublicRoot; ?>images/cylinder_128.png">
                         <div class="feed-refresh-indicator"><-0-></div>
                     </div>
                 </div>
@@ -149,7 +149,7 @@
 
 
                 <div class="section-heading">
-                    <span class="toggle" toggleFeed="WaterPump2Status" toggleClass="heating">
+                    <span data-config-key="WaterPump2Status" data-toggle-class="heating">
                         <img src="<?php echo $path; ?>Modules/app/apps/MyForest/mmspheatpump/images/radiator_128.png">
                         Space Heating
                     </span>
@@ -160,7 +160,7 @@
 
 
                 <div class="section-heading">
-                    <span class="toggle" toggleFeed="WaterPump4Status" toggleClass="heating">
+                    <span data-config-key="WaterPump4Status" data-toggle-class="heating">
                         <img src="<?php echo $appPublicRoot; ?>images/cylinder_128.png">
                         Hot Water
                     </span>

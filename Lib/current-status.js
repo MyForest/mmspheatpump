@@ -69,13 +69,13 @@ async function setTitleBasedOnFeed(jqueryElement, configKey) {
 /** Toggles a class depending on whether a feed is zero or not */
 async function updateToggles() {
 
-    $("[toggleFeed][toggleClass]").each(function () {
+    $("[data-config-key][data-toggle-class]").each(function () {
 
-        const configKey = $(this).attr("toggleFeed")
+        const configKey = $(this).data("configKey")
         const feedMeta = feedsByConfigKey[configKey]
 
         if (feedMeta) {
-            const thresholdClassName = $(this).attr("toggleClass")
+            const thresholdClassName = $(this).data("toggleClass")
             if (feedMeta.value) {
                 $(this).addClass(thresholdClassName)
             } else {
