@@ -71,11 +71,8 @@ async function updateWindowSummary(feedHistoryByConfigKey, windowTimeInterval) {
         const outputConfigKey = $(this).attr("data-output-config-key")
         const outputDataSeries = feedHistoryByConfigKey[outputConfigKey]
 
-        hideEfficiency = false
-        if ($(this).attr("hideEfficiency") == 1) hideEfficiency = true
-
-        hideConsumption = false
-        if ($(this).attr("hideConsumption") == 1) hideConsumption = true
+        hideEfficiency = ($(this).data("hideEfficiency") == 1)
+        hideConsumption = ($(this).data("hideConsumption") == 1)
 
         if (inputDataSeries && outputDataSeries) {
             const summary = energySummary(inputDataSeries, outputDataSeries, windowTimeInterval, hideEfficiency, hideConsumption)
