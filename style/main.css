@@ -21,9 +21,24 @@
     padding-top: .7vh;
 }
 
+.bluenav {
+    width: 8%;
+    padding: 0px;
+    padding-top: 5px;
+    padding-bottom: 5px
+}
+
+.update-controls {
+    min-width: 10em
+}
+
 @media only screen and (min-width: 1200px) {
     .section-heading {
         font-size: 140%;
         line-height: 140%;
+    }
+    .bluenav {
+        width: unset;
+        padding: 11px;
     }
 }
