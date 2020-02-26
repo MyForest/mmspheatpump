@@ -17,8 +17,13 @@
 }
 
 .section-heading {
-    font-size: 140%;
     font-weight: bold;
-    line-height: 140%;
     padding-top: .7vh;
+}
+
+@media only screen and (min-width: 1200px) {
+    .section-heading {
+        font-size: 140%;
+        line-height: 140%;
+    }
 }
