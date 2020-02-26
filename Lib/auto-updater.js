@@ -9,7 +9,14 @@ const feedsByConfigKey = {};
 async function updateFeedCache() {
 
     const response = await fetch("../feed/list.json")
-    const result = await response.json()
+    let result = null
+    try {
+        result = await response.json()
+    } catch (err) {
+        console.error(err)
+        $(".feed-refresh-indicator").html(err)
+        return;
+    }
 
     if (result) {
         if (result.success == false) {
@@ -17,6 +24,7 @@ async function updateFeedCache() {
                 // Go to login page. Sadly this will direct to the starting page afterwards, not back here
                 document.location = "./../"
             } else {
+                console.error(err)
                 $(".feed-refresh-indicator").html(result.message)
             }
             return
