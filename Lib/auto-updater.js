@@ -24,7 +24,7 @@ async function updateFeedCache() {
                 // Go to login page. Sadly this will direct to the starting page afterwards, not back here
                 document.location = "./../"
             } else {
-                console.error(err)
+                console.error(result.message)
                 $(".feed-refresh-indicator").html(result.message)
             }
             return
