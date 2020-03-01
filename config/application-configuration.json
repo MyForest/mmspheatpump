@@ -35,6 +35,30 @@
         "optional": true,
         "description": "The temperature of the air reported by the heat pump in degrees Celsius (°C)"
     },
+    "EffectiveTemperature": {
+        "displayOptions": {
+            "label": "Effective",
+            "color": "lightgreen",
+            "fixed": 1
+        },
+        "type": "feed",
+        "autoname": "EffectiveTemperature",
+        "engine": 5,
+        "optional": true,
+        "description": "The apparent temperature of the air in degrees Celsius (°C)"
+    },
+    "OutdoorDewPoint": {
+        "displayOptions": {
+            "label": "Dew point",
+            "color": "lightblue",
+            "fixed": 1
+        },
+        "type": "feed",
+        "autoname": "OutdoorDewPoint",
+        "engine": 5,
+        "optional": true,
+        "description": "The dew point of the air outside in degrees Celsius (°C)"
+    },
     "TargetHCTemperatureZone1": {
         "displayOptions": {
             "label": "Desired",
