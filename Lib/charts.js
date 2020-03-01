@@ -50,13 +50,15 @@ function createCoPFeed(inputFeedHistory, outputFeedHistory) {
     })
 }
 
-function createClientSideCoPFeed(inputConfigKey, outputConfigKey, configKey) {
+function createClientSideCoPFeed(inputConfigKey, outputConfigKey, configKey, color) {
 
     if (chartSeriesByConfigKey[inputConfigKey] == null || chartSeriesByConfigKey[outputConfigKey] == null) return
 
     const copFeedHistory = createCoPFeed(chartSeriesByConfigKey[inputConfigKey].data, chartSeriesByConfigKey[outputConfigKey].data)
 
     chartSeriesByConfigKey[configKey] = {
+        color,
+        lines: { fill: true },
         data: copFeedHistory,
         "label": configKey,
         "scale": 100,
@@ -96,7 +98,7 @@ function createClientSideNominalEfficiencyFeeds(outsideTemperatureConfigKey, flo
 
     chartSeriesByConfigKey["Nominal CoP@Flow"] = {
         data: copAtFlowFeed,
-        color: "purple",
+        color: "gold",
         "label": "Nominal CoP@Flow",
         "scale": 100,
         "scaledUnit": "%",
@@ -105,7 +107,7 @@ function createClientSideNominalEfficiencyFeeds(outsideTemperatureConfigKey, flo
 
     chartSeriesByConfigKey["Nominal CoP@Design"] = {
         data: copAtDesign,
-        color: "green",
+        color: "silver",
         "label": "Nominal CoP@" + designTemperature,
         "scale": 100,
         "scaledUnit": "%",
@@ -162,8 +164,8 @@ async function loadDataAndRenderCharts() {
         }
     }))
 
-    createClientSideCoPFeed("HeatingEnergyConsumedRate1", "HeatingEnergyProducedRate1", "Space Heating CoP")
-    createClientSideCoPFeed("HotWaterEnergyConsumedRate1", "HotWaterEnergyProducedRate1", "Hot Water CoP")
+    createClientSideCoPFeed("HeatingEnergyConsumedRate1", "HeatingEnergyProducedRate1", "Space Heating CoP", "darkgreen")
+    createClientSideCoPFeed("HotWaterEnergyConsumedRate1", "HotWaterEnergyProducedRate1", "Hot Water CoP", "blue")
     createClientSideCoPFeed("TotalEnergyConsumedRate1", "TotalEnergyProducedRate1", "Total CoP")
 
     if (config.app.IncludeNominalEfficiences.value) {
