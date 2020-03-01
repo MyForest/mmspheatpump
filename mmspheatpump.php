@@ -86,6 +86,14 @@
                             </td>
 
                             <td>
+                                <div class="title">Effective</div>
+                                <div>
+                                    <span liveValueFeed="EffectiveTemperature" fixed="1"></span>
+                                    <span class="units"></span>
+                                </div>
+                            </td>
+
+                            <td>
                                 <div class="title">Using</div>
                                 <div>
                                     <span liveValueFeed="TotalEnergyConsumedRate1" precision="2" scale="0.001"></span>
