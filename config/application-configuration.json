@@ -128,10 +128,13 @@
     "solar": {
         "displayOptions": {
             "label": "Solar",
-            "color": "gold",
+            "color": "yellow",
             "precision": 2,
             "scale": 0.001,
-            "scaledUnit": "kW"
+            "scaledUnit": "kW",
+            "lines": {
+                "fill": true
+            }
         },
         "type": "feed",
         "autoname": "solar",
