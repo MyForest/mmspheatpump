@@ -133,13 +133,13 @@
                     </div>
                 </div>
 
-
+                
                 <div class="section-heading">Energy
                     <span data-hide-efficiency="1" data-input-config-key="TotalEnergyConsumed1" data-output-config-key="TotalEnergyProduced1"></span>
                 </div>
 
                 <div data-label="Power" data-config-keys="solar,HeatingEnergyConsumedRate1,HeatingEnergyProducedRate1,HotWaterEnergyConsumedRate1,HotWaterEnergyProducedRate1,HeatPumpFrequency" class="chart"></div>
-                
+
 
                 <div class="section-heading">Efficiency
                     <span data-hide-consumption="1" data-input-config-key="TotalEnergyConsumed1" data-output-config-key="TotalEnergyProduced1"></span>
@@ -156,7 +156,7 @@
                     <span class="energy-summary" data-input-config-key="HeatingEnergyConsumed1" data-output-config-key="HeatingEnergyProduced1">
                 </div>
 
-                <div data-label="Temperature" data-config-keys="FlowTemperature,ReturnTemperature,OutdoorTemperature,TargetHCTemperatureZone1" class="chart"></div>
+                <div data-label="Temperature" data-config-keys="FlowTemperature,ReturnTemperature,OutdoorTemperature,EffectiveTemperature,OutdoorDewPoint,TargetHCTemperatureZone1" class="chart"></div>
 
 
                 <div class="section-heading">
