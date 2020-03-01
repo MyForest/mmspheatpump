@@ -209,52 +209,49 @@ async function drawChart(jQueryElement) {
 
     // Find out more about the options at https://github.com/flot/flot/blob/master/API.md
 
-    if (jQueryElement.options == null) {
-        // Cache the options
-        const options = {
-            xaxis: {
-                mode: "time",
-                timezone: "browser",
-                min: view.start,
-                max: view.end,
-                font: { size: flot_font_size, color: "black" }
-            },
-            yaxis: {
-                font: { size: flot_font_size, color: "black" },
-                label: getYAxisLabel(seriesWithHistory, jQueryElement.attr("data-label"))
-            },
-            grid: {
-                borderWidth: 0,
-                clickable: true,
-                hoverable: true,
-                margin: { top: 25, left: 20 }
-            },
-            series: {
-                lines: { lineWidth: 0.5 }
-            },
-            selection: { mode: "x" },
-            legend: {
-                position: "NW",
-                noColumns: seriesWithHistory.length,
-                color: "black",
-                sorted: true
-            }
-        }
-
-        jQueryElement.options = options;
-
-        setYAxisTickFormatter(seriesWithHistory, jQueryElement.options.yaxis, jQueryElement)
-
+    if (jQueryElement.get()[0].childNodes.length == 0) {
+        // Create a legend container
+        jQueryElement.before("<div class='legendContainer' data-config-keys='" + configKeys.join(",") + "'>chart legend</div>");
     }
 
-    jQueryElement.options.xaxis.font.size = flot_font_size
-    jQueryElement.options.yaxis.font.size = flot_font_size
+    const options = {
+        xaxis: {
+            mode: "time",
+            timezone: "browser",
+            min: view.start,
+            max: view.end,
+            font: { size: flot_font_size, color: "black" }
+        },
+        yaxis: {
+            font: { size: flot_font_size, color: "black" },
+            label: getYAxisLabel(seriesWithHistory, jQueryElement.attr("data-label"))
+        },
+        grid: {
+            borderWidth: 0,
+            clickable: true,
+            hoverable: true,
+            margin: { left: 20 }
+        },
+        series: {
+            lines: { lineWidth: 0.5 }
+        },
+        selection: { mode: "x" },
+        legend: {
+            noColumns: seriesWithHistory.length,
+            color: "black",
+            sorted: true,
+            container: jQueryElement.prev()
+        }
+    }
 
-    $.plot(jQueryElement, seriesWithHistory, jQueryElement.options);
+    setYAxisTickFormatter(seriesWithHistory, options.yaxis, jQueryElement)
+
+
+    $.plot(jQueryElement, seriesWithHistory, options);
 
     // Flot doesn't have native axis label support
     // We can't apply the label until the elements have been drawn
-    $(".yAxis", jQueryElement).attr("data-label", jQueryElement.options.yaxis.label)
+    $(".yAxis", jQueryElement).attr("data-label", options.yaxis.label)
 
     jQueryElement.removeClass("processing")
 }
@@ -358,8 +355,8 @@ $(".chart").bind("plothover", function (_event, pos) {
 
     if (pos.x) {
         // Notably we want to show a synchronized value in all the charts for the time the user is hovering over with their mouse
-        $(".chart").each(function (_chartIndex, chart) {
-            showValueInLegendForTimestamp(chart, pos.x)
+        $(".legendContainer").each(function (_index, container) {
+            showValueInLegendForTimestamp(container, pos.x)
         })
     }
 

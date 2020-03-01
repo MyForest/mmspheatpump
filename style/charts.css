@@ -22,8 +22,10 @@
      min-height: 200px;
  }
 
- .chart>.legend {
-     margin-left: 50px;
+ .legendContainer {
+     font-size: 70%;
+     overflow: hidden;
+     white-space: nowrap;
  }
 
  .auto-update-enabled, .auto-update-enabled:hover {
@@ -32,4 +34,11 @@
 
  .chart-with-no-feeds {
      display: none;
+ }
+
+ @media only screen and (min-width: 1200px) {
+     .legendContainer {
+         margin-left: 40px;
+         font-size: unset
+     }
  }
