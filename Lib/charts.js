@@ -68,24 +68,38 @@ function createClientSideCoPFeed(inputConfigKey, outputConfigKey, configKey, col
 
 }
 
-function createClientSideNominalEfficiencyFeeds(outsideTemperatureConfigKey, flowTemperatureConfigKey) {
+function createClientSideNominalEfficiencyFeeds(externalTemperatureConfigKeys, flowTemperatureConfigKey) {
 
     const designTemperature = config.app.DesignFlowTemperature.value
 
-    const outsideTemperatureSeries = chartSeriesByConfigKey[outsideTemperatureConfigKey]
+    const externalFeeds = externalTemperatureConfigKeys.map(configKey => chartSeriesByConfigKey[configKey])
+
+    // This hunts for the first feed that can provide reasonable data for the time window being reviewed
+    const outsideTemperatureSeries = externalFeeds.find(feed => feed != null && feed.data != null && feed.data[0] != null)
+
     const flowTemperatureSeries = chartSeriesByConfigKey[flowTemperatureConfigKey]
 
     if (outsideTemperatureSeries == null || flowTemperatureSeries == null) return
 
-    // Naively assumes the feeds are aligned in time and there's no gaps in either feed
-
     const copAtFlowFeed = []
     const copAtDesign = []
 
-    outsideTemperatureSeries.data.map((row, index) => {
+    // Look for outdoor temperature at the time the flow temperature was logged
+    flowTemperatureSeries.data.map(row => {
 
-        const outdoorTemp = row[1]
-        const flowTemp = Math.round(flowTemperatureSeries.data[index][1], 0)
+        const timestamp = row[0]
+        // Default to the first temp
+        let outdoorTemp = outsideTemperatureSeries.data[0][1];
+
+        // Try to find a more representative temperature. Stop looking once we pass the reference timestamp
+        outsideTemperatureSeries.data.find(info => {
+            if (info[0] > timestamp) return true
+            outdoorTemp = info[1]
+        })
+
+        // We can only do CoP lookups on whole numbers at the moment
+        outdoorTemp = Math.round(outdoorTemp)
+        const flowTemp = Math.round(row[1])
 
         if (nominalEfficiencies[flowTemp]) {
             copAtFlowFeed.push([row[0], nominalEfficiencies[flowTemp]["nominal"][outdoorTemp]])
@@ -171,7 +185,7 @@ async function loadDataAndRenderCharts() {
     if (config.app.IncludeNominalEfficiences.value) {
         nominalEfficiencies = await (await efficiencyPromise).json()
 
-        createClientSideNominalEfficiencyFeeds("OutdoorTemperature", "FlowTemperature")
+        createClientSideNominalEfficiencyFeeds(["EffectiveTemperature", "OutdoorTemperature"], "FlowTemperature")
     }
 
     await Promise.all([
