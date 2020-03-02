@@ -607,28 +607,28 @@
             "type": "DataType::REALTIME",
             "engine": "Engine::PHPFINA",
             "interval": "60",
-            "unit": "Wh"
+            "unit": "kWh"
         },
         {
             "name": "HeatingEnergyProduced1",
             "type": "DataType::REALTIME",
             "engine": "Engine::PHPFINA",
             "interval": "60",
-            "unit": "Wh"
+            "unit": "kWh"
         },
         {
             "name": "HotWaterEnergyConsumed1",
             "type": "DataType::REALTIME",
             "engine": "Engine::PHPFINA",
             "interval": "60",
-            "unit": "Wh"
+            "unit": "kWh"
         },
         {
             "name": "HotWaterEnergyProduced1",
             "type": "DataType::REALTIME",
             "engine": "Engine::PHPFINA",
             "interval": "60",
-            "unit": "Wh"
+            "unit": "kWh"
         },
         {
             "name": "TotalEnergyConsumedRate1",
@@ -642,7 +642,7 @@
             "type": "DataType::REALTIME",
             "engine": "Engine::PHPFINA",
             "interval": "60",
-            "unit": "Wh"
+            "unit": "kWh"
         },
         {
             "name": "TotalEnergyProducedRate1",
@@ -656,7 +656,7 @@
             "type": "DataType::REALTIME",
             "engine": "Engine::PHPFINA",
             "interval": "60",
-            "unit": "Wh"
+            "unit": "kWh"
         },
         {
             "name": "CoP",
