@@ -62,6 +62,7 @@ async function setTitleBasedOnFeed(jqueryElement, configKey) {
     const appFeed = config.app[configKey]
     if (appFeed) {
         description = "Based on '" + configKey + "' feed which is described as:\n" + appFeed.description
+        description += "\nLast update was at " + new Date(feedsByConfigKey[configKey].time * 1000).toISOString()
         jqueryElement.attr("title", description)
     }
 }
