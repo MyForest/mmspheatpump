@@ -250,7 +250,8 @@ async function drawChart(jQueryElement) {
         },
         bars: {
             align: "center",
-            barWidth: 60 * 1000
+            barWidth: 60 * 1000,
+            lineWidth: 0.5
         },
         selection: { mode: "x" },
         legend: {
