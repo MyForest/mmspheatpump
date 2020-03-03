@@ -360,7 +360,7 @@ $(".chart").bind("plothover", function (_event, pos) {
     if (pos.x) {
         // Notably we want to show a synchronized value in all the charts for the time the user is hovering over with their mouse
         $(".legendContainer").each(function (_index, container) {
-            showValueInLegendForTimestamp(container, pos.x)
+            showValueInLegendForTimestamp(container, pos.x + 30000)
         })
     }
 
