@@ -331,9 +331,13 @@ async function showValueInLegendForTimestamp(chart, timestamp) {
             const feedHistory = chartSeries.data
 
             let valueAtTimestamp = null
-            for ([datapointTime, value] of feedHistory) {
-                if (datapointTime > timestamp) break // We've gone past the timestamp
-                valueAtTimestamp = value
+            for (item of feedHistory) {
+                if (item) {
+                    datapointTime = item[0]
+                    value = item[1]
+                    if (datapointTime > timestamp) break // We've gone past the timestamp
+                    valueAtTimestamp = value
+                }
             }
 
             if (valueAtTimestamp) {
