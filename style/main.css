@@ -34,6 +34,9 @@
 }
 
 @media only screen and (min-width: 1200px) {
+    .content-container {
+        max-width: unset;
+    }
     .section-heading {
         font-size: 140%;
         line-height: 140%;
