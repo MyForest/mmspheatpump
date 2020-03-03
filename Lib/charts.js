@@ -178,7 +178,7 @@ async function loadDataAndRenderCharts() {
         }
     }))
 
-    createClientSideCoPFeed("HeatingEnergyConsumedRate1", "HeatingEnergyProducedRate1", "Space Heating CoP", "darkgreen")
+    createClientSideCoPFeed("HeatingEnergyConsumedRate1", "HeatingEnergyProducedRate1", "Space Heating CoP", "green")
     createClientSideCoPFeed("HotWaterEnergyConsumedRate1", "HotWaterEnergyProducedRate1", "Hot Water CoP", "blue")
     createClientSideCoPFeed("TotalEnergyConsumedRate1", "TotalEnergyProducedRate1", "Total CoP")
 
