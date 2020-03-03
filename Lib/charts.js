@@ -23,30 +23,40 @@ async function indicateTimeWindow(start, end, timeInterval) {
     if (humanStart != humanEnd) humanFriendlyMoments += " to " + humanEnd
     $(".time-window").attr("title", humanFriendlyMoments)
 }
-
+function sum(arrayOfNumber) {
+    return arrayOfNumber.reduce((p, value) => p + value || 0, 0)
+}
 function createCoPFeed(inputFeedHistory, outputFeedHistory) {
 
     // Assumes the feeds are aligned in time and there's no gaps in either feed
     return inputFeedHistory.map((row, index, array) => {
 
-        const friends = 5
+        // If no input then don't declare a CoP
+        if (row[1] == 0) return null;
 
-        const inputFriends = array.slice(index - friends, index + friends).map(([_, value]) => value)
-        const input = inputFriends.reduce((p, value) => p + value, 0)
+        // If no output then don't declare a CoP
+        if (outputFeedHistory[index][1] == 0) return null;
 
-        if (input == 0) return [row[0], 0]
+        const cohortSize = Math.min(index, 3)
 
-        const outputFriends = outputFeedHistory.slice(index - friends, index + friends).map(([_, value]) => value)
+        const inputCohortValues = array.slice(index - cohortSize, index + cohortSize + 1).map(([_, value]) => value)
+        const inputCohortSum = sum(inputCohortValues)
 
-        const sensibleOutputFriends = outputFriends.map((value, index) => {
-            const inputValue = inputFriends[index]
-            const upperLimit = 5 * inputValue
+        if (inputCohortSum == 0) return null;
+
+
+        const outputCohortValues = outputFeedHistory.slice(index - cohortSize, index + cohortSize + 1).map(([_, value]) => value)
+
+        const constrainedOutputCohortValues = outputCohortValues.map((value, index) => {
+            const upperLimit = 7 * inputCohortValues[index]
             return Math.min(upperLimit, value)
         })
 
-        const output = sensibleOutputFriends.reduce((p, value) => p + value, 0)
+        const outputCohortSum = sum(constrainedOutputCohortValues)
 
-        return [row[0], output / input]
+        if (outputCohortSum == 0) return null;
+
+        return [row[0], outputCohortSum / inputCohortSum]
     })
 }
 
@@ -58,6 +68,9 @@ function createClientSideCoPFeed(inputConfigKey, outputConfigKey, configKey, col
 
     chartSeriesByConfigKey[configKey] = {
         color,
+        bars: {
+            show: true
+        },
         lines: { fill: true },
         data: copFeedHistory,
         "label": configKey,
@@ -234,6 +247,10 @@ async function drawChart(jQueryElement) {
         },
         series: {
             lines: { lineWidth: 0.5 }
+        },
+        bars: {
+            align: "center",
+            barWidth: 60 * 1000
         },
         selection: { mode: "x" },
         legend: {
