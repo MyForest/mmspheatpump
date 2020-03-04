@@ -143,7 +143,7 @@ function createClientSideNominalEfficiencyFeeds(externalTemperatureConfigKeys, f
 
 }
 
-async function loadDataAndRenderCharts() {
+async function loadDataAndRenderCharts(forceRefresh) {
 
     if (view.end == 0) return;
     if (view.end <= view.start) console.log("Odd view times:", view.end, view.start)
@@ -178,20 +178,23 @@ async function loadDataAndRenderCharts() {
         if (feedsByConfigKey[configKey]) {
             // This feed has been configured locally
 
-            const latestTimeOnServerForFeed = feedsByConfigKey[configKey].time * 1000;
-            if (chartSeriesByConfigKey.hasOwnProperty(configKey)) {
-                const data = chartSeriesByConfigKey[configKey].data;
-                if (data) {
-                    const newestRecordOnClient = data[data.length - 1]
-                    if (newestRecordOnClient) {
-                        const latestTimeOnClientForFeed = newestRecordOnClient[0]
-                        if (latestTimeOnClientForFeed >= latestTimeOnServerForFeed) {
-                            return
+            if (forceRefresh) {
+                // Don't do anything clever
+            } else {
+                const latestTimeOnServerForFeed = feedsByConfigKey[configKey].time * 1000;
+                if (chartSeriesByConfigKey.hasOwnProperty(configKey)) {
+                    const data = chartSeriesByConfigKey[configKey].data;
+                    if (data) {
+                        const newestRecordOnClient = data[data.length - 1]
+                        if (newestRecordOnClient) {
+                            const latestTimeOnClientForFeed = newestRecordOnClient[0]
+                            if (latestTimeOnClientForFeed >= latestTimeOnServerForFeed) {
+                                return
+                            }
                         }
                     }
                 }
             }
-
             // It's really tempting to just add the latest record on to the end of the local list
             // However, we may have missed a lot of data
             // This is especially true on mobile where where the web page gets put to sleep when it's not showing

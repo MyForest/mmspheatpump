@@ -2,7 +2,7 @@ async function showHumanWeAreLoadingCharts(whatTheyClicked) {
     $(".chart").addClass("processing")
     $(whatTheyClicked).addClass("processing")
     try {
-        await loadDataAndRenderCharts();
+        await loadDataAndRenderCharts(true);
     } finally {
         $(whatTheyClicked).removeClass("processing")
     }
