@@ -178,6 +178,11 @@ async function loadDataAndRenderCharts(forceRefresh) {
         if (feedsByConfigKey[configKey]) {
             // This feed has been configured locally
 
+            // Start by attaching the known history if there is some
+            if (chartSeriesByConfigKey[configKey]) {
+                feedHistoryByConfigKey[configKey] = chartSeriesByConfigKey[configKey].data
+            }
+
             if (forceRefresh) {
                 // Don't do anything clever
             } else {
