@@ -23,7 +23,7 @@ async function describeUpdate() {
     if (lastUpdate) {
         const age = new Date() - lastUpdate;
 
-        const newestFeedAge = (new Date().getTime() / 1000 - newestFeed);
+        const newestFeedAge = (new Date().getTime() / 1000 - newestFeedTime);
         const newestFeedString = humanizeDuration(newestFeedAge * 1000, { largest: 1, round: true });
         $(".feed-refresh-indicator").attr("title", "Checked feeds " + humanizeDuration(age, { largest: 1, round: true }) + " ago - the newest feed is " + newestFeedString + " seconds old")
         const pos = Math.round(age / 1000) % 10

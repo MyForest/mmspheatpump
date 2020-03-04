@@ -25,7 +25,7 @@ $(".duration").click(function () {
         case undefined: return;
         case null: return;
         case "tdy": { view.start = midnight(); break }
-        case "all": { view.start = oldestFeed * 1000; break }
+        case "all": { view.start = oldestFeedTime * 1000; break }
         default: { view.start = (newestFeed - requestedTime * 3600) * 1000; break }
     }
 

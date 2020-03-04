@@ -1,6 +1,6 @@
 var lastUpdate = null;
-var newestFeed = null;
-var oldestFeed = null;
+var newestFeedTime = null;
+var oldestFeedTime = null;
 let autoUpdate = true;
 
 const feedsByConfigKey = {};
@@ -66,29 +66,29 @@ async function updater() {
 
     await updateFeedCache()
 
-    previousNewest = newestFeed;
-    newestFeed = Math.max(...Object.values(feedsByConfigKey).map(f => f.time))
-    oldestFeed = Math.min(...Object.values(feedsByConfigKey).map(f => f.start_time))
+    previousNewest = newestFeedTime;
+    newestFeedTime = Math.max(...Object.values(feedsByConfigKey).map(f => f.time))
+    oldestFeedTime = Math.min(...Object.values(feedsByConfigKey).map(f => f.start_time))
 
     if (view.end == 0) {
         // Assign a default view window
-        view.end = newestFeed * 1000;
+        view.end = newestFeedTime * 1000;
         view.start = view.end - 3600 * 1000;
     }
 
     if (autoUpdate) {
-        if (previousNewest != newestFeed) {
+        if (previousNewest != newestFeedTime) {
             // Something has a new timestamp (of course the actual values may not have changed!)
             // TODO: Investigate /Lib/timeseries.js
             $(".feed-refresh-indicator").addClass("processing")
             try {
 
                 const interval = view.end - view.start
-                view.end = newestFeed * 1000;
+                view.end = newestFeedTime * 1000;
                 view.start = view.end - interval
                 console.log("Updated start and end of rolling window", view.start, view.end, interval / 1000)
                 await loadDataAndRenderCharts()
-                previousNewest = newestFeed
+                previousNewest = newestFeedTime
             } finally {
                 $(".feed-refresh-indicator").removeClass("processing")
             }
@@ -107,7 +107,7 @@ $(".update-controls").click(async function () {
 
     if (autoUpdate) {
         const interval = view.end - view.start
-        view.end = newestFeed * 1000;
+        view.end = newestFeedTime * 1000;
         view.start = view.end - interval
         console.log("Updated start and end of rolling window", view.start, view.end, interval / 1000)
 
