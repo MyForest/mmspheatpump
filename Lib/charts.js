@@ -149,7 +149,7 @@ async function loadDataAndRenderCharts() {
     if (view.end <= view.start) console.log("Odd view times:", view.end, view.start)
 
     // Turn off auto-refresh if we've wandered into the past
-    if (view.end < (newestFeed * 1000)) setAutoRefresh(false)
+    if (view.end < (newestFeedTime * 1000)) setAutoRefresh(false)
 
     var start = view.start;
     var end = view.end;
@@ -168,7 +168,6 @@ async function loadDataAndRenderCharts() {
     start = Math.ceil(start / intervalms) * intervalms;
     end = Math.ceil(end / intervalms) * intervalms;
 
-    chartSeriesByConfigKey = {};
     const feedHistoryByConfigKey = {}
 
     // Fetch the feed history
@@ -178,6 +177,24 @@ async function loadDataAndRenderCharts() {
     await Promise.all(Object.keys(config.app).map(async configKey => {
         if (feedsByConfigKey[configKey]) {
             // This feed has been configured locally
+
+            const latestTimeOnServerForFeed = feedsByConfigKey[configKey].time * 1000;
+            if (chartSeriesByConfigKey.hasOwnProperty(configKey)) {
+                const data = chartSeriesByConfigKey[configKey].data;
+                if (data) {
+                    const newestRecordOnClient = data[data.length - 1]
+                    if (newestRecordOnClient) {
+                        const latestTimeOnClientForFeed = newestRecordOnClient[0]
+                        if (latestTimeOnClientForFeed >= latestTimeOnServerForFeed) {
+                            return
+                        }
+                    }
+                }
+            }
+
+            // It's really tempting to just add the latest record on to the end of the local list
+            // However, we may have missed a lot of data
+            // This is especially true on mobile where where the web page gets put to sleep when it's not showing
 
             const feedId = feedsByConfigKey[configKey].id
             const url = "../feed/data.json?id=" + feedId + "&start=" + start + "&end=" + end + "&interval=" + interval + "&skipmissing=1&limitinterval=1"
