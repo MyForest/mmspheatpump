@@ -26,10 +26,10 @@ $(".duration").click(function () {
         case null: return;
         case "tdy": { view.start = midnight(); break }
         case "all": { view.start = oldestFeedTime * 1000; break }
-        default: { view.start = (newestFeed - requestedTime * 3600) * 1000; break }
+        default: { view.start = (newestFeedTime - requestedTime * 3600) * 1000; break }
     }
 
-    view.end = newestFeed * 1000;
+    view.end = newestFeedTime * 1000;
 
     showHumanWeAreLoadingCharts($(this));
 
