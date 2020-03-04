@@ -153,7 +153,11 @@ async function loadDataAndRenderCharts() {
 
     var start = view.start;
     var end = view.end;
-    var npoints = 1200;
+
+    // Get as much detail as we can reasonably display. We can't easily show more than one visual element per pixel
+    // Notably we don't do this on each resize because it would cause a very clunky resize experience. We will respect the new size on the next refresh
+    const npoints = $(this).width();
+
     const timeInterval = (end - start) / 1000;
 
     indicateTimeWindow(start, end, timeInterval)
@@ -250,7 +254,7 @@ async function drawChart(jQueryElement) {
         },
         bars: {
             align: "center",
-            barWidth: 60 * 1000,
+            barWidth: 60 * 1000, // Should be wider when viewing a longer time window
             lineWidth: 0.5
         },
         selection: { mode: "x" },
