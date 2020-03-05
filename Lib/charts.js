@@ -27,6 +27,7 @@ function sum(arrayOfNumber) {
     return arrayOfNumber.reduce((p, value) => p + value || 0, 0)
 }
 function createCoPFeed(inputFeedHistory, outputFeedHistory) {
+    if (inputFeedHistory == null || outputFeedHistory == null) return []
 
     // Assumes the feeds are aligned in time and there's no gaps in either feed
     return inputFeedHistory.map((row, index, array) => {
@@ -35,7 +36,9 @@ function createCoPFeed(inputFeedHistory, outputFeedHistory) {
         if (row[1] == 0) return null;
 
         // If no output then don't declare a CoP
-        if (outputFeedHistory[index][1] == 0) return null;
+        if (outputFeedHistory[index]) {
+            if (outputFeedHistory[index][1] == 0) return null;
+        }
 
         const cohortSize = Math.min(index, 3)
 
