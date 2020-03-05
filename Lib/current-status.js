@@ -40,9 +40,10 @@ async function updateLiveValues() {
 
             const value = feedMeta.value;
 
-            if (value) {
+            const displayUnit = niceDisplayUnit(configKey);
+            if (value || (value == 0 && displayUnit == "°C")) {
                 jqueryElement.text(niceDisplayValue(value, configKey))
-                jqueryElement.next().text(niceDisplayUnit(configKey))
+                jqueryElement.next().text(displayUnit)
             } else {
                 jqueryElement.text("---")
                 jqueryElement.next().text("")
