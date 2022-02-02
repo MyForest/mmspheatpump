@@ -13,9 +13,9 @@
 <script type="text/javascript" src="<?php echo $path; ?>Lib/flot/jquery.flot.resize.min.js?v=<?php echo $v; ?>"></script>
 <script type="text/javascript" src="<?php echo $path; ?>Lib/flot/jquery.flot.time.min.js?v=<?php echo $v; ?>"></script>
 <script type="text/javascript" src="<?php echo $path; ?>Lib/flot/jquery.flot.selection.min.js?v=<?php echo $v; ?>"></script>
-# EmonCMS 10.x
+<!-- EmonCMS 10.x -->
 <script type="text/javascript" src="<?php echo $path; ?>Modules/app/Lib/vis.helper.js?v=<?php echo $v; ?>"></script>
-# EmonCMS 11.x
+<!-- EmonCMS 11.x -->
 <script type="text/javascript" src="<?php echo $path; ?>Lib/vis.helper.js?v=<?php echo $v; ?>"></script>
 
 
