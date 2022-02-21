@@ -40,7 +40,7 @@
             <div class="col1-inner">
                 <div class="block-bound">
                     <div style="float:right">
-                        <div class="openconfig" style="padding-top:10px; padding-right:10px; cursor:pointer">
+                        <div class="openconfig config-open" style="padding-top:10px; padding-right:10px; cursor:pointer">
                             <i class="icon-wrench icon-white"></i>
                         </div>
                     </div>
@@ -225,6 +225,7 @@
 
     // Reduce confusion by turning off the configuration page if this user can't make updates
     if (!"<?php echo $session['write']; ?>") $(".openconfig").hide();
+    if (!"<?php echo $session['write']; ?>") $(".config-open").hide();
 
 
 
