@@ -26,7 +26,8 @@
     "RoomTemperatureZone1": {
         "displayOptions": {
             "label": "Inside",
-            "color": "purple"
+            "color": "purple",
+            "fixed": 1
         },
         "type": "feed",
         "autoname": "RoomTemperatureZone1",
@@ -73,7 +74,8 @@
     "TargetHCTemperatureZone1": {
         "displayOptions": {
             "label": "Desired",
-            "color": "blue"
+            "color": "blue",
+            "fixed": 1
         },
         "type": "feed",
         "autoname": "TargetHCTemperatureZone1",
