@@ -82,6 +82,14 @@
                             </td>
 
                             <td>
+                                <div class="title">Inside</div>
+                                <div>
+                                    <span liveValueFeed="RoomTemperatureZone1" fixed="1"></span>
+                                    <span class="units"></span>
+                                </div>
+                            </td>
+
+                            <td>
                                 <div class="title">Outside</div>
                                 <div>
                                     <span liveValueFeed="OutdoorTemperature" fixed="1"></span>
@@ -184,7 +192,7 @@
 
                 <div class="section-heading">Pumps</div>
 
-                <div data-config-keys="WaterPump1Status,WaterPump2Status,WaterPump4Status" class="chart"></div>
+                <div data-config-keys="OperationMode,WaterPump1Status,WaterPump2Status,WaterPump4Status" class="chart"></div>
 
             </div>
         </div>
