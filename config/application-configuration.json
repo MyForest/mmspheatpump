@@ -26,7 +26,8 @@
     "RoomTemperatureZone1": {
         "displayOptions": {
             "label": "Inside",
-            "color": "purple"
+            "color": "purple",
+            "fixed": 1
         },
         "type": "feed",
         "autoname": "RoomTemperatureZone1",
