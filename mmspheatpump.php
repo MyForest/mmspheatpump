@@ -200,7 +200,7 @@
 </div>
 
 <div id="app-setup" class="block py-2 px-5 hide">
-    <h2 class="appconfig-title">MMSP Heat Pump</h3>
+    <h2 class="appconfig-title">MMSP Heat Pump</h2>
 
     <div class="appconfig-description">
         <div class="appconfig-description-inner">
