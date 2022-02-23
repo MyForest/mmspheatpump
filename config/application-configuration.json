@@ -74,7 +74,8 @@
     "TargetHCTemperatureZone1": {
         "displayOptions": {
             "label": "Desired",
-            "color": "blue"
+            "color": "blue",
+            "fixed": 1
         },
         "type": "feed",
         "autoname": "TargetHCTemperatureZone1",
@@ -282,17 +283,29 @@
     },
     "HeatPumpFrequency": {
         "displayOptions": {
-            "label": "Next Iteration",
+            "label": "Power Level",
             "color": "blue",
-            "precision": 2,
-            "scale": 0.001,
-            "scaledUnit": "kW"
+            "fixed": 0
         },
         "type": "feed",
         "autoname": "HeatPumpFrequency",
         "engine": 5,
         "optional": true,
-        "description": "The intended energy to be consumed by the heat pump in the next cycle in watt hours (Wh)"
+        "description": "The current power level of the heat pump, as a percentage of its maximum input"
+    },
+    "OperationMode": {
+        "displayOptions": {
+            "label": "Operation Mode",
+            "color": "gold",
+            "lines": {
+                "fill": true
+            }
+        },
+        "type": "feed",
+        "autoname": "OperationMode",
+        "engine": 5,
+        "optional": true,
+        "description": "Operation Mode of the heat pump: 0 is Idle, 1 is hot water, 2 is heating"
     },
     "RenewableHeatEnergy": {
         "displayOptions": {

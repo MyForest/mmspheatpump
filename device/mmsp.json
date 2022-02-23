@@ -84,15 +84,8 @@
         },
         {
             "name": "HeatPumpFrequency",
-            "description": "The amount of power the ASHP intends to use in the next minute",
+            "description": "The current power level of the heat pump, as a percentage of its maximum input",
             "processList": [
-                {
-                    "process": "scale",
-                    "arguments": {
-                        "type": "ProcessArg::VALUE",
-                        "value": 60
-                    }
-                },
                 {
                     "process": "log_to_feed",
                     "arguments": {
@@ -523,7 +516,7 @@
             "type": "DataType::REALTIME",
             "engine": "Engine::PHPFINA",
             "interval": "60",
-            "unit": "W"
+            "unit": "%"
         },
         {
             "name": "FlowTemperature",
