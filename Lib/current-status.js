@@ -78,7 +78,7 @@ async function updateToggles() {
 
         if (feedMeta) {
             const thresholdClassName = $(this).data("toggleClass")
-            if (feedMeta.value) {
+            if (feedMeta.value > 0) {
                 $(this).addClass(thresholdClassName)
             } else {
                 $(this).removeClass(thresholdClassName)
