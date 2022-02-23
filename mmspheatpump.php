@@ -82,6 +82,14 @@
                             </td>
 
                             <td>
+                                <div class="title">Inside</div>
+                                <div>
+                                    <span liveValueFeed="RoomTemperatureZone1" fixed="1"></span>
+                                    <span class="units"></span>
+                                </div>
+                            </td>
+
+                            <td>
                                 <div class="title">Outside</div>
                                 <div>
                                     <span liveValueFeed="OutdoorTemperature" fixed="1"></span>
