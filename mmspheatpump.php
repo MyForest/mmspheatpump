@@ -168,7 +168,7 @@
                     <span class="energy-summary" data-input-config-key="HeatingEnergyConsumed1" data-output-config-key="HeatingEnergyProduced1">
                 </div>
 
-                <div data-label="Temperature" data-config-keys="FlowTemperature,ReturnTemperature,OutdoorTemperature,EffectiveTemperature,OutdoorDewPoint,TargetHCTemperatureZone1" class="chart"></div>
+                <div data-label="Temperature" data-config-keys="FlowTemperature,ReturnTemperature,OutdoorTemperature,RoomTemperatureZone1,EffectiveTemperature,OutdoorDewPoint,TargetHCTemperatureZone1" class="chart"></div>
 
 
                 <div class="section-heading">

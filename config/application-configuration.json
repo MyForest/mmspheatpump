@@ -23,6 +23,17 @@
         "optional": true,
         "description": "The temperature of the cool fluid returning to the heat pump in degrees Celsius (°C)"
     },
+    "RoomTemperatureZone1": {
+        "displayOptions": {
+            "label": "Inside",
+            "color": "purple"
+        },
+        "type": "feed",
+        "autoname": "RoomTemperatureZone1",
+        "engine": 5,
+        "optional": true,
+        "description": "The room temperature in Zone1 in degrees Celsius (°C)"
+    },
     "OutdoorTemperature": {
         "displayOptions": {
             "label": "Outside",
