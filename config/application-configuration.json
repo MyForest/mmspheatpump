@@ -293,6 +293,20 @@
         "optional": true,
         "description": "The current power level of the heat pump, as a percentage of its maximum input"
     },
+    "OperationMode": {
+        "displayOptions": {
+            "label": "Operation Mode",
+            "color": "gold",
+            "lines": {
+                "fill": true
+            }
+        },
+        "type": "feed",
+        "autoname": "OperationMode",
+        "engine": 5,
+        "optional": true,
+        "description": "Operation Mode of the heat pump: 0 is Idle, 1 is hot water, 2 is heating"
+    },
     "RenewableHeatEnergy": {
         "displayOptions": {
             "label": "Captured Power",
