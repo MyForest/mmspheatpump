@@ -33,7 +33,7 @@
         "engine": 5,
         "optional": true,
         "description": "The room temperature in Zone1 in degrees Celsius (°C)"
-    },    
+    },
     "OutdoorTemperature": {
         "displayOptions": {
             "label": "Outside",
