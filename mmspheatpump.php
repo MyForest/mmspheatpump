@@ -158,7 +158,7 @@
                     <span data-hide-efficiency="1" data-input-config-key="TotalEnergyConsumed1" data-output-config-key="TotalEnergyProduced1"></span>
                 </div>
 
-                <div data-label="Power" data-config-keys="solar,HeatingEnergyConsumedRate1,HeatingEnergyProducedRate1,HotWaterEnergyConsumedRate1,HotWaterEnergyProducedRate1,HeatPumpFrequency" class="chart"></div>
+                <div data-label="Power" data-config-keys="solar,HeatingEnergyConsumedRate1,HeatingEnergyProducedRate1,HotWaterEnergyConsumedRate1,HotWaterEnergyProducedRate1" class="chart"></div>
 
 
                 <div class="section-heading">Efficiency
