@@ -17,16 +17,33 @@ function activePercent(inputDataSeries) {
 async function updateActivePercentSummary(feedHistoryByConfigKey) {
 
     $("[data-active-input-config-keys]").each(function () {
-        const activeConfigKeys = $(this).attr("data-active-input-config-keys").split(",").map(s => s.trim())
+        var activeConfigKeys = null;
+        try {
+            activeConfigKeys = $(this).attr("data-active-input-config-keys").split(",").map(s => s.trim())
+
+        } catch (err) {
+            console.error("Unable to parse active input config keys", err)
+            return
+        }
 
         if (activeConfigKeys) {
             const summaries = activeConfigKeys.map(key => {
-                const title = config.app[key].displayOptions.label
-                return title + ": " + activePercent(feedHistoryByConfigKey[key])
+                try {
+                    var title = key
+                    try { // Try for a better label
+                        title = config.app[key].displayOptions.label
+                    } catch {
+                        console.error("Unable to get better title for " + key, err)
+                    }
+                    return title + ": " + activePercent(feedHistoryByConfigKey[key])
+                } catch (err) {
+                    console.error("Unable to calculate active percent for " + key, err)
+                    return "(error for " + key + ")"
+                }
             })
             $(this).text(summaries.join(", "))
         } else {
-            // Not enough feeds configured for this summary
+            // Not enough feeds configured for this summary, clear the text
             $(this).text("")
         }
 
