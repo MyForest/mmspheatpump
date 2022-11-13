@@ -192,7 +192,7 @@
 
 
                 <div class="section-heading">Pumps</div>
-
+                <span data-active-input-config-keys="WaterPump1Status,WaterPump2Status,WaterPump4Status"></span>
                 <div data-config-keys="OperationMode,WaterPump1Status,WaterPump2Status,WaterPump4Status" class="chart"></div>
 
             </div>

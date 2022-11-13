@@ -237,6 +237,7 @@ async function loadDataAndRenderCharts(forceRefresh) {
 
     await Promise.all([
         updateWindowSummary(feedHistoryByConfigKey, timeInterval),
+        updateActivePercentSummary(feedHistoryByConfigKey),
         $(".chart").each(async function () { await drawChart($(this)) })
     ]);
 }
