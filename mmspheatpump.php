@@ -33,6 +33,7 @@
 <script type="text/javascript" src="<?php echo $appPublicRoot; ?>Lib/time.js"></script>
 <script type="text/javascript" src="<?php echo $appPublicRoot; ?>Lib/current-status.js"></script>
 <script type="text/javascript" src="<?php echo $appPublicRoot; ?>Lib/energy-summary.js"></script>
+<script type="text/javascript" src="<?php echo $appPublicRoot; ?>Lib/active-percent.js"></script>
 
 
 <div>
