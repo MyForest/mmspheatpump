@@ -1,3 +1,5 @@
+**This repository is unmaintained.**
+
 # mmspheatpump
 
 An application for [Emoncms](https://github.com/emoncms/emoncms) that helps review experiments with a heat pump.
